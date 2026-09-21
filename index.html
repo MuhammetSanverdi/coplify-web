@@ -1,46 +1,76 @@
-<title>Coplify Support</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coplify — Clipboard history for your menu bar</title>
+<meta name="description" content="Coplify keeps a searchable history of everything you copy on macOS. Text, images, files, and screenshots — one shortcut away.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,650&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
   :root {
-    --bg: #faf8f4;
+    --bg: #f5f7f5;
     --surface: #ffffff;
-    --text: #16211f;
-    --text-dim: #57655f;
-    --text-faint: #93a19b;
+    --surface-2: #eef2ef;
+    --text: #11201c;
+    --text-dim: #4c6059;
+    --text-faint: #8a9c95;
     --accent: #146055;
+    --accent-2: #1c8b73;
     --accent-soft: #e1ece8;
-    --border: #e4e2da;
-    --kbd-bg: #f0efe8;
-    --kbd-border: #d8d5c9;
+    --border: #dfe6e1;
+    --shadow: 0 1px 2px rgba(17,32,28,.04), 0 12px 32px -16px rgba(17,32,28,.18);
+    --kbd-bg: #eef1eb;
+    --kbd-border: #d7dcd2;
+    --mock-bg: #0f1a17;
+    --mock-row: #17251f;
+    --mock-text: #e7efe9;
+    --mock-text-dim: #8ba299;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #101614;
-      --surface: #161e1b;
-      --text: #eef3f0;
-      --text-dim: #9dada6;
-      --text-faint: #64746e;
-      --accent: #5bcbb0;
-      --accent-soft: #1c2e29;
-      --border: #253330;
-      --kbd-bg: #1c2724;
-      --kbd-border: #2e3d38;
+      --bg: #0b120f;
+      --surface: #121b18;
+      --surface-2: #182420;
+      --text: #eaf1ed;
+      --text-dim: #9cb0a8;
+      --text-faint: #5f7169;
+      --accent: #57cbaf;
+      --accent-2: #7fe0c4;
+      --accent-soft: #16302a;
+      --border: #223330;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -18px rgba(0,0,0,.6);
+      --kbd-bg: #1a2622;
+      --kbd-border: #2b3b36;
+      --mock-bg: #060b09;
+      --mock-row: #101a16;
+      --mock-text: #eaf1ed;
+      --mock-text-dim: #7c928a;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #101614;
-    --surface: #161e1b;
-    --text: #eef3f0;
-    --text-dim: #9dada6;
-    --text-faint: #64746e;
-    --accent: #5bcbb0;
-    --accent-soft: #1c2e29;
-    --border: #253330;
-    --kbd-bg: #1c2724;
-    --kbd-border: #2e3d38;
+    --bg: #0b120f;
+    --surface: #121b18;
+    --surface-2: #182420;
+    --text: #eaf1ed;
+    --text-dim: #9cb0a8;
+    --text-faint: #5f7169;
+    --accent: #57cbaf;
+    --accent-2: #7fe0c4;
+    --accent-soft: #16302a;
+    --border: #223330;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px -18px rgba(0,0,0,.6);
+    --kbd-bg: #1a2622;
+    --kbd-border: #2b3b36;
+    --mock-bg: #060b09;
+    --mock-row: #101a16;
+    --mock-text: #eaf1ed;
+    --mock-text-dim: #7c928a;
   }
 
   * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
   body {
     margin: 0;
     background: var(--bg);
@@ -48,60 +78,73 @@
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    padding: 0 20px;
+    -webkit-font-smoothing: antialiased;
   }
-  .page {
-    max-width: 660px;
-    margin: 0 auto;
-    padding-block: 64px 80px;
+  a { color: inherit; }
+  .icon { width: 1em; height: 1em; display: inline-block; vertical-align: -0.15em; }
+
+  h1, h2, h3 { text-wrap: balance; font-family: "Fraunces", Georgia, serif; margin: 0; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px max(20px, calc((100% - 920px) / 2));
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
   }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 0.98rem; text-decoration: none; }
+  .nav-mark { width: 24px; height: 24px; border-radius: 7px; flex: none; background: linear-gradient(155deg, var(--accent-2), var(--accent) 75%); }
+  .nav-mark svg { width: 100%; height: 100%; display: block; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.92rem; color: var(--text-dim); }
+  .nav-links a { text-decoration: none; padding: 4px 0; border-bottom: 1.5px solid transparent; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a[aria-current="page"] { color: var(--text); border-color: var(--accent); }
 
-  h1, h2, h3 { text-wrap: balance; font-family: "Fraunces", Georgia, serif; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
 
-  header {
-    display: flex;
+  /* ---------- hero ---------- */
+  .hero {
+    padding-block: 64px 40px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 48px;
     align-items: center;
-    gap: 18px;
-    margin-bottom: 12px;
   }
-  .mark {
-    flex: none;
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(160deg, #1a7566, var(--accent) 70%);
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; padding-block: 40px 8px; }
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
-  }
-  :root[data-theme="dark"] .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
-  .mark svg { width: 100%; height: 100%; display: block; }
-
-  h1 { font-size: 1.9rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
-  .tagline { margin: 4px 0 0; color: var(--text-dim); font-size: 1.05rem; }
-
-  .lede {
-    margin-top: 36px;
-    font-size: 1.05rem;
-    color: var(--text-dim);
-    max-width: 58ch;
-  }
-
-  .shortcut-row {
-    margin-top: 28px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 14px 18px;
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--accent);
     background: var(--accent-soft);
-    border-radius: 12px;
-    font-size: 0.95rem;
-    color: var(--text);
+    padding: 5px 11px 5px 9px;
+    border-radius: 100px;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+    font-weight: 650;
+    line-height: 1.08;
+    margin-top: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-lede {
+    margin-top: 18px;
+    font-size: 1.12rem;
+    color: var(--text-dim);
+    max-width: 46ch;
+  }
+  .hero-shortcut {
+    margin-top: 26px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.92rem; color: var(--text-dim);
   }
   kbd {
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.85em;
+    font-size: 0.82em;
     font-weight: 500;
     background: var(--kbd-bg);
     border: 1px solid var(--kbd-border);
@@ -111,157 +154,291 @@
     color: var(--text);
   }
 
-  section { margin-top: 56px; }
-  section > h2 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-faint);
-    margin: 0 0 20px;
-    font-family: "Inter", sans-serif;
+  /* ---------- hero mock window ---------- */
+  .mock {
+    background: var(--mock-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    max-width: 380px;
+    margin-inline: auto;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .mock-bar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), transparent);
+  }
+  .mock-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .mock-dot.r { background: #ec6a5e; } .mock-dot.y { background: #f4bf4f; } .mock-dot.g { background: #61c454; }
+  .mock-title { flex: 1; text-align: center; font-size: 0.74rem; color: var(--mock-text-dim); margin-right: 33px; }
+  .mock-search {
+    margin: 2px 12px 10px; padding: 7px 10px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    font-size: 0.82rem; color: var(--mock-text-dim);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .mock-list { padding: 0 8px 10px; display: flex; flex-direction: column; gap: 3px; }
+  .mock-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 8px; border-radius: 8px;
+    font-size: 0.83rem;
+  }
+  .mock-row.active { background: var(--accent); color: #06140f; }
+  .mock-thumb {
+    flex: none; width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--mock-row);
+    color: var(--mock-text-dim);
+  }
+  .mock-row.active .mock-thumb { background: rgba(6,20,15,.18); color: #06140f; }
+  .mock-thumb.img { background: linear-gradient(135deg, #e08b4f, #d95c6b); color: #fff; }
+  .mock-thumb .icon { width: 15px; height: 15px; }
+  .mock-body { flex: 1; min-width: 0; }
+  .mock-line1 { color: var(--mock-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mock-row.active .mock-line1 { color: #06140f; font-weight: 600; }
+  .mock-line2 { font-size: 0.72rem; color: var(--mock-text-dim); margin-top: 1px; }
+  .mock-row.active .mock-line2 { color: rgba(6,20,15,.65); }
+  .mock-star { flex: none; width: 13px; height: 13px; color: #f4bf4f; }
+  .mock-row.active .mock-star { color: #06140f; }
+  .mock-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px; border-top: 1px solid rgba(255,255,255,.07);
+    font-size: 0.72rem; color: var(--mock-text-dim);
   }
 
-  .qa + .qa { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--border); }
-  .qa h3 { font-size: 1.15rem; font-weight: 500; margin: 0 0 8px; color: var(--text); }
-  .qa p { margin: 0; color: var(--text-dim); max-width: 60ch; }
-  .qa p + p { margin-top: 10px; }
-  .qa code, .qa .path {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.88em;
-    background: var(--kbd-bg);
-    padding: 1px 6px;
-    border-radius: 5px;
-  }
+  /* ---------- sections ---------- */
+  section.block { padding-block: 52px; border-top: 1px solid var(--border); }
+  .block-head { max-width: 54ch; margin-bottom: 34px; }
+  .block-eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); }
+  .block-head h2 { font-size: 1.7rem; margin-top: 8px; font-weight: 600; }
+  .block-head p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; }
 
-  .grid-two {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  @media (max-width: 520px) {
-    .grid-two { grid-template-columns: 1fr; }
-  }
-  .perm-card {
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 760px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 20px;
   }
-  .perm-card .perm-name {
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin-bottom: 8px;
+  .feature-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
   }
-  .perm-card p { margin: 0; color: var(--text-dim); font-size: 0.94rem; }
+  .feature-icon .icon { width: 18px; height: 18px; }
+  .feature h3 { font-family: "Inter", sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .feature p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
 
-  footer {
-    margin-top: 72px;
-    padding-top: 28px;
+  .qa-list { display: flex; flex-direction: column; }
+  .qa { padding: 20px 0; border-top: 1px solid var(--border); }
+  .qa:first-child { border-top: none; padding-top: 0; }
+  .qa h3 { font-family: "Inter", sans-serif; font-size: 1.02rem; font-weight: 600; margin-bottom: 7px; }
+  .qa p { margin: 0; color: var(--text-dim); max-width: 62ch; font-size: 0.96rem; }
+  .qa .path {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.88em;
+    background: var(--surface-2);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  .perm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 620px) { .perm-grid { grid-template-columns: 1fr; } }
+  .perm {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex; gap: 14px;
+  }
+  .perm-icon {
+    flex: none; width: 34px; height: 34px; border-radius: 9px;
+    background: var(--surface-2); color: var(--text-dim);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .perm-icon .icon { width: 17px; height: 17px; }
+  .perm h3 { font-family: "Inter", sans-serif; font-size: 0.96rem; font-weight: 600; margin-bottom: 5px; }
+  .perm p { margin: 0; color: var(--text-dim); font-size: 0.9rem; }
+
+  footer.site-footer {
     border-top: 1px solid var(--border);
-    color: var(--text-faint);
-    font-size: 0.86rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
+    padding: 28px 0 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    color: var(--text-faint); font-size: 0.85rem;
   }
+  footer.site-footer a { text-decoration: underline; text-underline-offset: 2px; }
 </style>
+</head>
+<body>
 
-<div class="page">
-  <header>
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 56 56" fill="none">
-        <rect x="16" y="12" width="24" height="30" rx="4.5" fill="#ffffff" fill-opacity="0.55"/>
-        <rect x="11" y="18" width="24" height="30" rx="4.5" fill="#ffffff"/>
-      </svg>
-    </div>
-    <div>
-      <h1>Coplify</h1>
-      <p class="tagline">Clipboard history that lives in your menu bar.</p>
-    </div>
-  </header>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20.5" y2="20.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.3"/><path d="M12 7.2V12l3.3 2"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V4M7 4 4 7M7 4l3 3"/><path d="M17 4v16M17 20l3-3M17 20l-3-3"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="4.3" y="7.3" width="12" height="14" rx="2.6"/><path d="M8.3 4.3h9.4a2.6 2.6 0 0 1 2.6 2.6v11.2"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M4 8.6A1.6 1.6 0 0 1 5.6 7h2L9 5.3h6L16.4 7h2A1.6 1.6 0 0 1 20 8.6v8.8A1.6 1.6 0 0 1 18.4 19H5.6A1.6 1.6 0 0 1 4 17.4z"/><circle cx="12" cy="13" r="3.2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.9l2.85 6.02 6.45.68-4.8 4.5 1.28 6.4L12 17.5l-5.78 3-1.28-6.4-4.8-4.5 6.45-.68z"/></symbol>
+  <symbol id="i-menubar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.7" width="18" height="6.6" rx="3.3"/><circle cx="8.3" cy="12" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><path d="M6.2 3.4l12.6 7.3-5.4 1.4 2.7 5.5-2.5 1.2-2.7-5.5-4 3.9z"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3.6 6.8a1.6 1.6 0 0 1 1.6-1.6h4l1.8 2.2h7.4A1.6 1.6 0 0 1 20 9v8a1.6 1.6 0 0 1-1.6 1.6H5.2A1.6 1.6 0 0 1 3.6 17z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M14 3.5V8h4"/></symbol>
+</svg>
 
-  <p class="lede">
-    Coplify keeps a searchable history of everything you copy — text, rich text,
-    images, and files — and gets out of the way otherwise: no Dock icon, no
-    windows left open, just a menu bar item and a shortcut.
-  </p>
-
-  <div class="shortcut-row">
-    <span>Open history from anywhere:</span>
-    <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd>
+<nav class="nav">
+  <a class="nav-brand" href="./">
+    <span class="nav-mark"><svg viewBox="0 0 24 24"><rect x="7" y="5" width="10.5" height="13" rx="2.2" fill="#fff" fill-opacity=".55"/><rect x="4.5" y="7.6" width="10.5" height="13" rx="2.2" fill="#fff"/></svg></span>
+    Coplify
+  </a>
+  <div class="nav-links">
+    <a href="./" aria-current="page">Support</a>
+    <a href="privacy.html">Privacy</a>
   </div>
+</nav>
 
-  <section>
-    <h2>Using Coplify</h2>
-    <div class="qa">
-      <h3>How do I bring up my clipboard history?</h3>
-      <p>
-        Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the
-        Coplify icon in the menu bar. Start typing to filter, then press
-        <kbd>Return</kbd> to paste the selected item.
+<div class="wrap">
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow"><svg class="icon" width="12" height="12"><use href="#i-menubar"/></svg> Menu bar app for macOS</span>
+      <h1>Everything you copy, one shortcut away.</h1>
+      <p class="hero-lede">
+        Coplify keeps a searchable history of your clipboard — text, rich
+        text, images and files — and gets out of the way otherwise. No Dock
+        icon, no windows left open.
       </p>
+      <div class="hero-shortcut">
+        Open it from anywhere <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd>
+      </div>
     </div>
-    <div class="qa">
-      <h3>Can I keep items permanently?</h3>
-      <p>
-        Click the star next to any item to favorite it. Favorites stay pinned
-        to the top and survive even if you clear your history.
-      </p>
-    </div>
-    <div class="qa">
-      <h3>Does it filter by date, or sort differently?</h3>
-      <p>
-        Yes — the calendar menu under the search field filters by Today,
-        Tomorrow, the last 3/7/14/30 days, or All. A sort toggle switches
-        between newest-first and oldest-first; favorites always stay on top.
-      </p>
-    </div>
-    <div class="qa">
-      <h3>Where is my history stored?</h3>
-      <p>
-        Locally, in <span class="path">~/Library/Application Support/Coplify/</span>.
-        Nothing is sent off your Mac unless you explicitly configure a sync
-        folder between your own devices.
-      </p>
-    </div>
-    <div class="qa">
-      <h3>How do I launch Coplify at login?</h3>
-      <p>
-        System Settings → General → Login Items → <kbd>+</kbd> → add
-        Coplify.app.
-      </p>
+
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar">
+        <span class="mock-dot r"></span><span class="mock-dot y"></span><span class="mock-dot g"></span>
+        <span class="mock-title">Coplify</span>
+      </div>
+      <div class="mock-search"><svg class="icon" width="13" height="13"><use href="#i-search"/></svg> Search clipboard…</div>
+      <div class="mock-list">
+        <div class="mock-row active">
+          <span class="mock-thumb img"><svg class="icon" width="15" height="15"><use href="#i-camera"/></svg></span>
+          <span class="mock-body"><div class="mock-line1">Screenshot 2026-09-21</div><div class="mock-line2">2m ago</div></span>
+          <svg class="mock-star" style="fill:none"><use href="#i-star" width="13" height="13"/></svg>
+        </div>
+        <div class="mock-row">
+          <span class="mock-thumb"><svg class="icon" width="15" height="15"><use href="#i-search"/></svg></span>
+          <span class="mock-body"><div class="mock-line1">developer.apple.com/design/…</div><div class="mock-line2">14m ago</div></span>
+        </div>
+        <div class="mock-row">
+          <span class="mock-thumb"><svg class="icon" width="15" height="15"><use href="#i-doc"/></svg></span>
+          <span class="mock-body"><div class="mock-line1">Q3-report.pdf</div><div class="mock-line2">1h ago</div></span>
+        </div>
+        <div class="mock-row">
+          <span class="mock-thumb"><svg class="icon" width="15" height="15"><use href="#i-star"/></svg></span>
+          <span class="mock-body"><div class="mock-line1">Shipping address</div><div class="mock-line2">Favorite</div></span>
+        </div>
+      </div>
+      <div class="mock-footer"><span>4 items</span><span>Newest first</span></div>
     </div>
   </section>
 
-  <section>
-    <h2>Permissions it may ask for</h2>
-    <div class="grid-two">
-      <div class="perm-card">
-        <div class="perm-name">Accessibility</div>
-        <p>
-          Lets Coplify simulate <kbd>⌘</kbd><kbd>V</kbd> so a selected item
-          pastes automatically. Without it, items still copy to your
-          clipboard — you just press <kbd>⌘</kbd><kbd>V</kbd> yourself.
-        </p>
+  <section class="block" id="features">
+    <div class="block-head">
+      <div class="block-eyebrow">What it does</div>
+      <h2>Built to disappear until you need it</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-search"/></svg></div>
+        <h3>Search as you type</h3>
+        <p>Every copied item is filterable the moment it lands — no browsing a long list.</p>
       </div>
-      <div class="perm-card">
-        <div class="perm-name">Screenshot folder access</div>
-        <p>
-          Lets Coplify notice new screenshots the moment they're saved, so
-          <kbd>⌘</kbd><kbd>⇧</kbd><kbd>3</kbd>/<kbd>4</kbd> captures land in
-          your history automatically — even ones you never copied.
-        </p>
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-clock"/></svg></div>
+        <h3>Date filters</h3>
+        <p>Today, Tomorrow, the last 3/7/14/30 days, or All — from the calendar menu.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-sort"/></svg></div>
+        <h3>Sort your way</h3>
+        <p>Newest or oldest first. Favorites always stay pinned to the top.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-layers"/></svg></div>
+        <h3>Rich content</h3>
+        <p>Plain text, rich text (RTF), images and files — each with a real preview.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-camera"/></svg></div>
+        <h3>Automatic screenshots</h3>
+        <p>⌘⇧3 / ⌘⇧4 captures show up in history the moment they save — even if never copied.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg class="icon" width="18" height="18"><use href="#i-star"/></svg></div>
+        <h3>Favorites</h3>
+        <p>Star anything to keep it pinned, even after you clear the rest of your history.</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <span>Coplify for macOS</span>
-    <span><a href="privacy.html" style="color:inherit">Privacy Policy</a> · © 2026 Gülizar Şanverdi</span>
+  <section class="block" id="faq">
+    <div class="block-head">
+      <div class="block-eyebrow">Using Coplify</div>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="qa-list">
+      <div class="qa">
+        <h3>How do I bring up my clipboard history?</h3>
+        <p>Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the Coplify icon in the menu bar. Start typing to filter, then press <kbd>Return</kbd> to paste the selected item.</p>
+      </div>
+      <div class="qa">
+        <h3>Where is my history stored?</h3>
+        <p>Locally, in <span class="path">~/Library/Application Support/Coplify/</span>. Nothing is sent off your Mac unless you explicitly configure a sync folder between your own devices.</p>
+      </div>
+      <div class="qa">
+        <h3>How do I launch Coplify at login?</h3>
+        <p>System Settings → General → Login Items → <kbd>+</kbd> → add Coplify.app.</p>
+      </div>
+      <div class="qa">
+        <h3>Does it capture passwords from my password manager?</h3>
+        <p>No. Clipboard entries marked as concealed or transient by their source app are detected and skipped automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="permissions">
+    <div class="block-head">
+      <div class="block-eyebrow">Permissions</div>
+      <h2>What Coplify may ask for</h2>
+      <p>Both are optional — the app degrades gracefully without them.</p>
+    </div>
+    <div class="perm-grid">
+      <div class="perm">
+        <div class="perm-icon"><svg class="icon" width="17" height="17"><use href="#i-cursor"/></svg></div>
+        <div>
+          <h3>Accessibility</h3>
+          <p>Lets Coplify simulate <kbd>⌘V</kbd> so a selected item pastes automatically. Without it, items still copy — you press <kbd>⌘V</kbd> yourself.</p>
+        </div>
+      </div>
+      <div class="perm">
+        <div class="perm-icon"><svg class="icon" width="17" height="17"><use href="#i-folder"/></svg></div>
+        <div>
+          <h3>Screenshot folder access</h3>
+          <p>Lets Coplify notice new screenshots the moment macOS saves them, so they land in history automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>Coplify for macOS · © 2026 Gülizar Şanverdi</span>
+    <span><a href="privacy.html">Privacy Policy</a></span>
   </footer>
+
 </div>
+</body>
+</html>

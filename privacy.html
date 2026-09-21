@@ -1,40 +1,55 @@
-<title>Coplify Privacy Policy</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coplify — Privacy Policy</title>
+<meta name="description" content="Coplify's privacy policy: all clipboard data stays on your Mac. No analytics, no accounts, no servers.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,650&family=Inter:wght@400;500;600;700&display=swap">
 <style>
   :root {
-    --bg: #faf8f4;
+    --bg: #f5f7f5;
     --surface: #ffffff;
-    --text: #16211f;
-    --text-dim: #57655f;
-    --text-faint: #93a19b;
+    --surface-2: #eef2ef;
+    --text: #11201c;
+    --text-dim: #4c6059;
+    --text-faint: #8a9c95;
     --accent: #146055;
+    --accent-2: #1c8b73;
     --accent-soft: #e1ece8;
-    --border: #e4e2da;
+    --border: #dfe6e1;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #101614;
-      --surface: #161e1b;
-      --text: #eef3f0;
-      --text-dim: #9dada6;
-      --text-faint: #64746e;
-      --accent: #5bcbb0;
-      --accent-soft: #1c2e29;
-      --border: #253330;
+      --bg: #0b120f;
+      --surface: #121b18;
+      --surface-2: #182420;
+      --text: #eaf1ed;
+      --text-dim: #9cb0a8;
+      --text-faint: #5f7169;
+      --accent: #57cbaf;
+      --accent-2: #7fe0c4;
+      --accent-soft: #16302a;
+      --border: #223330;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #101614;
-    --surface: #161e1b;
-    --text: #eef3f0;
-    --text-dim: #9dada6;
-    --text-faint: #64746e;
-    --accent: #5bcbb0;
-    --accent-soft: #1c2e29;
-    --border: #253330;
+    --bg: #0b120f;
+    --surface: #121b18;
+    --surface-2: #182420;
+    --text: #eaf1ed;
+    --text-dim: #9cb0a8;
+    --text-faint: #5f7169;
+    --accent: #57cbaf;
+    --accent-2: #7fe0c4;
+    --accent-soft: #16302a;
+    --border: #223330;
   }
 
   * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
   body {
     margin: 0;
     background: var(--bg);
@@ -42,31 +57,35 @@
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.65;
-    padding: 0 20px;
+    -webkit-font-smoothing: antialiased;
   }
-  .page {
-    max-width: 640px;
-    margin: 0 auto;
-    padding-block: 60px 80px;
-  }
-  h1, h2 { text-wrap: balance; font-family: "Fraunces", Georgia, serif; }
+  a { color: inherit; }
+  h1, h2 { text-wrap: balance; font-family: "Fraunces", Georgia, serif; margin: 0; }
 
-  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-  .mark {
-    flex: none; width: 44px; height: 44px; border-radius: 13px;
-    background: linear-gradient(160deg, #1a7566, var(--accent) 70%);
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px max(20px, calc((100% - 920px) / 2));
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--border);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
-  }
-  :root[data-theme="dark"] .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
-  .mark svg { width: 100%; height: 100%; display: block; }
-  h1 { font-size: 1.6rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 0.98rem; text-decoration: none; }
+  .nav-mark { width: 24px; height: 24px; border-radius: 7px; flex: none; background: linear-gradient(155deg, var(--accent-2), var(--accent) 75%); }
+  .nav-mark svg { width: 100%; height: 100%; display: block; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.92rem; color: var(--text-dim); }
+  .nav-links a { text-decoration: none; padding: 4px 0; border-bottom: 1.5px solid transparent; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a[aria-current="page"] { color: var(--text); border-color: var(--accent); }
 
-  .updated { color: var(--text-faint); font-size: 0.88rem; margin: 6px 0 0 60px; }
+  .page { max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; }
+
+  h1 { font-size: 2rem; font-weight: 650; letter-spacing: -0.01em; }
+  .updated { color: var(--text-faint); font-size: 0.88rem; margin-top: 8px; }
 
   .summary {
-    margin-top: 32px;
+    margin-top: 30px;
     padding: 18px 20px;
     background: var(--accent-soft);
     border-radius: 12px;
@@ -75,12 +94,22 @@
   }
   .summary strong { color: var(--accent); }
 
-  section { margin-top: 40px; }
-  section h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0 0 12px;
+  .toc {
+    margin-top: 30px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.9rem;
   }
+  .toc div { font-weight: 600; margin-bottom: 8px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); }
+  .toc ol { margin: 0; padding-left: 1.15em; columns: 2; column-gap: 24px; }
+  .toc li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { text-decoration: none; color: var(--text-dim); }
+  .toc a:hover { color: var(--accent); }
+  @media (max-width: 480px) { .toc ol { columns: 1; } }
+
+  section { margin-top: 40px; scroll-margin-top: 80px; }
+  section h2 { font-size: 1.28rem; font-weight: 600; margin-bottom: 12px; }
   section p { margin: 0 0 12px; color: var(--text-dim); max-width: 62ch; }
   section p:last-child { margin-bottom: 0; }
   section ul { margin: 0 0 12px; padding-left: 1.2em; color: var(--text-dim); }
@@ -88,41 +117,58 @@
   code, .path {
     font-family: ui-monospace, "SF Mono", monospace;
     font-size: 0.88em;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--surface-2);
     padding: 1px 6px;
     border-radius: 5px;
   }
 
-  footer {
+  footer.site-footer {
+    border-top: 1px solid var(--border);
     margin-top: 64px;
     padding-top: 24px;
-    border-top: 1px solid var(--border);
     color: var(--text-faint);
-    font-size: 0.86rem;
+    font-size: 0.85rem;
   }
 </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="./">
+    <span class="nav-mark"><svg viewBox="0 0 24 24"><rect x="7" y="5" width="10.5" height="13" rx="2.2" fill="#fff" fill-opacity=".55"/><rect x="4.5" y="7.6" width="10.5" height="13" rx="2.2" fill="#fff"/></svg></span>
+    Coplify
+  </a>
+  <div class="nav-links">
+    <a href="./">Support</a>
+    <a href="privacy.html" aria-current="page">Privacy</a>
+  </div>
+</nav>
 
 <div class="page">
-  <header>
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 44 44" fill="none">
-        <rect x="12" y="9" width="19" height="24" rx="3.6" fill="#ffffff" fill-opacity="0.55"/>
-        <rect x="8.5" y="14" width="19" height="24" rx="3.6" fill="#ffffff"/>
-      </svg>
-    </div>
-    <h1>Coplify Privacy Policy</h1>
-  </header>
+  <h1>Privacy Policy</h1>
   <p class="updated">Last updated September 21, 2026</p>
 
   <p class="summary">
-    <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any of
-    your data. Your clipboard history is stored only on your own Mac, and
+    <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any
+    of your data. Your clipboard history is stored only on your own Mac, and
     nothing leaves your device unless you deliberately set up a sync folder
     between your own computers.
   </p>
 
-  <section>
+  <nav class="toc">
+    <div>On this page</div>
+    <ol>
+      <li><a href="#stores">What Coplify stores</a></li>
+      <li><a href="#not">What Coplify does not do</a></li>
+      <li><a href="#screenshots">Screenshot folder access</a></li>
+      <li><a href="#sync">Device sync</a></li>
+      <li><a href="#accessibility">Accessibility permission</a></li>
+      <li><a href="#retention">Data retention and deletion</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+    </ol>
+  </nav>
+
+  <section id="stores">
     <h2>What Coplify stores</h2>
     <p>
       Coplify keeps a history of what you copy — text, rich text, images, and
@@ -138,7 +184,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="not">
     <h2>What Coplify does not do</h2>
     <ul>
       <li>No analytics, telemetry, or usage tracking of any kind.</li>
@@ -148,7 +194,7 @@
     </ul>
   </section>
 
-  <section>
+  <section id="screenshots">
     <h2>Optional screenshot folder access</h2>
     <p>
       If you grant it, Coplify watches the folder macOS saves screenshots to,
@@ -158,7 +204,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="sync">
     <h2>Optional device sync</h2>
     <p>
       If you choose to enable sync, Coplify writes your clipboard history as
@@ -170,7 +216,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="accessibility">
     <h2>Accessibility permission</h2>
     <p>
       Coplify may request the Accessibility permission to simulate ⌘V so a
@@ -180,7 +226,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="retention">
     <h2>Data retention and deletion</h2>
     <p>
       History stays on your Mac until you clear it from within Coplify or
@@ -190,7 +236,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="changes">
     <h2>Changes to this policy</h2>
     <p>
       If this policy changes, the update date above will change with it.
@@ -198,7 +244,9 @@
     </p>
   </section>
 
-  <footer>
-    <a href="./" style="color:inherit">Coplify Support</a> · © 2026 Gülizar Şanverdi
+  <footer class="site-footer">
+    Coplify for macOS · © 2026 Gülizar Şanverdi
   </footer>
 </div>
+</body>
+</html>
