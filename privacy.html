@@ -1,0 +1,204 @@
+<title>Coplify Privacy Policy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --text: #16211f;
+    --text-dim: #57655f;
+    --text-faint: #93a19b;
+    --accent: #146055;
+    --accent-soft: #e1ece8;
+    --border: #e4e2da;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101614;
+      --surface: #161e1b;
+      --text: #eef3f0;
+      --text-dim: #9dada6;
+      --text-faint: #64746e;
+      --accent: #5bcbb0;
+      --accent-soft: #1c2e29;
+      --border: #253330;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101614;
+    --surface: #161e1b;
+    --text: #eef3f0;
+    --text-dim: #9dada6;
+    --text-faint: #64746e;
+    --accent: #5bcbb0;
+    --accent-soft: #1c2e29;
+    --border: #253330;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    padding: 0 20px;
+  }
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-block: 60px 80px;
+  }
+  h1, h2 { text-wrap: balance; font-family: "Fraunces", Georgia, serif; }
+
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  .mark {
+    flex: none; width: 44px; height: 44px; border-radius: 13px;
+    background: linear-gradient(160deg, #1a7566, var(--accent) 70%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
+  }
+  :root[data-theme="dark"] .mark { background: linear-gradient(160deg, #227a68, #0f2b25 85%); }
+  .mark svg { width: 100%; height: 100%; display: block; }
+  h1 { font-size: 1.6rem; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+
+  .updated { color: var(--text-faint); font-size: 0.88rem; margin: 6px 0 0 60px; }
+
+  .summary {
+    margin-top: 32px;
+    padding: 18px 20px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 0.98rem;
+  }
+  .summary strong { color: var(--accent); }
+
+  section { margin-top: 40px; }
+  section h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  section p { margin: 0 0 12px; color: var(--text-dim); max-width: 62ch; }
+  section p:last-child { margin-bottom: 0; }
+  section ul { margin: 0 0 12px; padding-left: 1.2em; color: var(--text-dim); }
+  section li { margin-bottom: 6px; }
+  code, .path {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.88em;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 0.86rem;
+  }
+</style>
+
+<div class="page">
+  <header>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 44 44" fill="none">
+        <rect x="12" y="9" width="19" height="24" rx="3.6" fill="#ffffff" fill-opacity="0.55"/>
+        <rect x="8.5" y="14" width="19" height="24" rx="3.6" fill="#ffffff"/>
+      </svg>
+    </div>
+    <h1>Coplify Privacy Policy</h1>
+  </header>
+  <p class="updated">Last updated September 21, 2026</p>
+
+  <p class="summary">
+    <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any of
+    your data. Your clipboard history is stored only on your own Mac, and
+    nothing leaves your device unless you deliberately set up a sync folder
+    between your own computers.
+  </p>
+
+  <section>
+    <h2>What Coplify stores</h2>
+    <p>
+      Coplify keeps a history of what you copy — text, rich text, images, and
+      file references — so you can search and paste it again later. This
+      history, along with your favorites and preferences, is saved locally at
+      <span class="path">~/Library/Application Support/Coplify/</span> on
+      your Mac.
+    </p>
+    <p>
+      Clipboard entries that the source app marks as concealed or transient
+      (for example, one-time passwords from a password manager) are detected
+      and skipped automatically — they are never written to this history.
+    </p>
+  </section>
+
+  <section>
+    <h2>What Coplify does not do</h2>
+    <ul>
+      <li>No analytics, telemetry, or usage tracking of any kind.</li>
+      <li>No advertising or third-party SDKs.</li>
+      <li>No account, sign-in, or personal identifiers are collected.</li>
+      <li>No data is sent to any server operated by Coplify or anyone else.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Optional screenshot folder access</h2>
+    <p>
+      If you grant it, Coplify watches the folder macOS saves screenshots to,
+      so new screenshots appear in your history automatically. This access is
+      read-only, stays entirely on-device, and is never transmitted anywhere.
+      You can revoke it at any time in System Settings → Privacy & Security.
+    </p>
+  </section>
+
+  <section>
+    <h2>Optional device sync</h2>
+    <p>
+      If you choose to enable sync, Coplify writes your clipboard history as
+      files inside a folder you pick yourself — for example, a folder inside
+      iCloud Drive or Dropbox. Coplify does not operate this transport; it
+      only reads and writes files there, using the same account and
+      encryption you already trust for that folder. Turning sync off stops
+      this entirely.
+    </p>
+  </section>
+
+  <section>
+    <h2>Accessibility permission</h2>
+    <p>
+      Coplify may request the Accessibility permission to simulate ⌘V so a
+      selected item pastes automatically. This permission is used only for
+      that purpose and involves no data collection. Without it, items still
+      copy to your system clipboard — you press ⌘V yourself instead.
+    </p>
+  </section>
+
+  <section>
+    <h2>Data retention and deletion</h2>
+    <p>
+      History stays on your Mac until you clear it from within Coplify or
+      remove the app. Uninstalling Coplify and deleting
+      <span class="path">~/Library/Application Support/Coplify/</span>
+      removes all locally stored data.
+    </p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>
+      If this policy changes, the update date above will change with it.
+      Material changes will be reflected here before they take effect.
+    </p>
+  </section>
+
+  <footer>
+    <a href="/" style="color:inherit">Coplify Support</a> · © 2026 Gülizar Şanverdi
+  </footer>
+</div>
