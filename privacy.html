@@ -15,27 +15,8 @@
     --accent: #146055;
     --kbd-bg: #f4f4f4;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #111111;
-      --text: #ededed;
-      --text-dim: #9a9a9a;
-      --border: #2a2a2a;
-      --accent: #5bcbb0;
-      --kbd-bg: #1c1c1c;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #111111;
-    --text: #ededed;
-    --text-dim: #9a9a9a;
-    --border: #2a2a2a;
-    --accent: #5bcbb0;
-    --kbd-bg: #1c1c1c;
-  }
-
   * { box-sizing: border-box; }
-  html { color-scheme: light dark; }
+  html { color-scheme: light; }
   body {
     margin: 0;
     background: var(--bg);
