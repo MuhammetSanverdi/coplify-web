@@ -6,48 +6,65 @@
 <title>Coplify — Privacy Policy</title>
 <meta name="description" content="Coplify's privacy policy: all clipboard data stays on your Mac. No analytics, no accounts, no servers.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
 <style>
   :root {
-    --bg: #ffffff;
-    --text: #1a1a1a;
-    --text-dim: #666666;
-    --border: #e6e6e6;
+    --bg: #eef4fb;
+    --surface: #ffffff;
+    --text: #10192b;
+    --text-dim: #5b6a80;
+    --text-faint: #8b97a8;
     --accent: #146055;
-    --kbd-bg: #f4f4f4;
+    --accent-tint: #e3f1ec;
+    --border: #dde6f1;
+    --kbd-bg: #f4f7fb;
   }
-  * { box-sizing: border-box; }
   html { color-scheme: light; }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, "Inter", BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  h1, h2 { font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  h1, h2 { font-family: "Plus Jakarta Sans", "Inter", sans-serif; font-weight: 800; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
 
-  header {
+  .nav {
+    position: sticky; top: 0; z-index: 20;
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 640px; margin: 0 auto;
-    padding: 28px 20px 20px;
+    padding: 16px max(20px, calc((100% - 1040px) / 2));
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
-  .brand { font-weight: 600; font-size: 0.98rem; text-decoration: none; color: var(--text); }
-  nav { display: flex; gap: 20px; font-size: 0.9rem; }
-  nav a { color: var(--text-dim); }
-  nav a[aria-current="page"] { color: var(--text); }
+  .nav-crumbs .brand { font-weight: 700; text-decoration: none; color: var(--text); font-family: "Inter", sans-serif; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.92rem; }
+  .nav-links a { text-decoration: none; color: var(--text-dim); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a[aria-current="page"] { color: var(--accent); font-weight: 600; }
 
-  main { max-width: 640px; margin: 0 auto; padding: 8px 20px 80px; }
+  main { max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; }
 
-  h1 { font-size: 1.9rem; }
-  .updated { color: var(--text-dim); font-size: 0.88rem; margin-top: 8px; }
-  .summary { margin-top: 24px; color: var(--text-dim); max-width: 60ch; }
-  .summary strong { color: var(--text); }
+  h1 { font-size: 2rem; }
+  .updated { color: var(--text-faint); font-size: 0.88rem; margin-top: 10px; }
+
+  .summary {
+    margin-top: 26px;
+    padding: 20px 22px;
+    background: var(--accent-tint);
+    border-radius: 16px;
+    color: var(--text);
+    font-size: 0.98rem;
+  }
+  .summary strong { color: var(--accent); }
 
   section { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
-  section h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
+  section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
   section p { margin: 0 0 10px; color: var(--text-dim); max-width: 62ch; }
   section p:last-child { margin-bottom: 0; }
   section ul { margin: 0; padding-left: 1.2em; color: var(--text-dim); }
@@ -61,27 +78,26 @@
   }
 
   footer {
-    max-width: 640px; margin: 0 auto;
-    padding: 36px 20px 60px;
+    max-width: 1040px; margin: 0 auto;
+    padding: 32px 20px 56px;
     border-top: 1px solid var(--border);
-    margin-top: 44px;
-    color: var(--text-dim); font-size: 0.86rem;
+    color: var(--text-faint); font-size: 0.86rem;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <a class="brand" href="./">Coplify</a>
-  <nav>
+<nav class="nav">
+  <div class="nav-crumbs"><a class="brand" href="./">Coplify</a></div>
+  <div class="nav-links">
     <a href="./">Support</a>
     <a href="privacy.html" aria-current="page">Privacy</a>
-  </nav>
-</header>
+  </div>
+</nav>
 
 <main>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated September 21, 2026</p>
+  <p class="updated">Last updated September 22, 2026</p>
 
   <p class="summary">
     <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any
