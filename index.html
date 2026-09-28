@@ -415,6 +415,12 @@
           <div class="hero-row">
             <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">developer.apple.com/design/…</div><div class="hero-line2">14m ago</div></span>
+            <!-- Truncated text implies it's over the real app's 44-character isExpandable
+                 threshold, so this row would actually show the expand button too — no star,
+                 since it's neither favorited nor (in this static frame) hovered. -->
+            <span class="hero-row-icons">
+              <span class="hero-row-expand"><svg class="icon" width="10" height="10"><use href="#i-expand"/></svg></span>
+            </span>
           </div>
         </div>
       </div>
