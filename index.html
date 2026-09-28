@@ -137,15 +137,19 @@
      missing entirely; without it the hero showed the same plain list every clipboard manager
      has, not the thing that actually sets Coplify apart. */
   .hero-preview {
-    position: absolute; left: 6%; top: 11%; width: 47%;
+    /* Matches .hero-panel's own box (inset a couple of points) rather than floating as a
+       separate card beside it — in the real app the preview opens *inside* the same window,
+       covering the list, not next to it. The previous version sat to the left and partially
+       covered the search field, which read as broken rather than intentional. */
+    position: absolute; right: 5%; bottom: 7%; width: 58%;
     background: var(--surface);
     border-radius: 14px;
     box-shadow: 0 26px 52px -18px rgba(8,20,17,.55);
     overflow: hidden;
     z-index: 2;
-    /* Roughly where the row's expand button sits, so the card visually grows out of the spot
-       that was "clicked" instead of just materializing from its own center. */
-    transform-origin: 90% 22%;
+    /* Measured against the rendered row-expand button's position within the panel, so the card
+       actually grows out of that spot instead of an eyeballed guess. */
+    transform-origin: 93% 35%;
     animation: heroPreviewPop 7s cubic-bezier(.65,0,.35,1) infinite;
   }
   @keyframes heroPreviewPop {
@@ -163,14 +167,16 @@
     background: #fff; box-shadow: 0 0 0 2px var(--accent), 0 3px 8px rgba(8,20,17,.4);
   }
   @keyframes heroCursor {
-    0%, 12%   { left: 18%; top: 90%; }
-    24%, 29%  { left: 91%; top: 34%; }
-    30%       { left: 91%; top: 34%; transform: scale(.75); }
+    /* Positions measured against the rendered page (getBoundingClientRect), not eyeballed —
+       the row's expand button and the preview's close button, in hero-visual-relative %. */
+    0%, 12%   { left: 16%; top: 86%; }
+    24%, 29%  { left: 92%; top: 58%; }
+    30%       { left: 92%; top: 58%; transform: scale(.75); }
     32%       { transform: scale(1); }
-    58%, 64%  { left: 50%; top: 15%; }
-    65%       { left: 50%; top: 15%; transform: scale(.75); }
+    58%, 64%  { left: 92%; top: 41%; }
+    65%       { left: 92%; top: 41%; transform: scale(.75); }
     67%       { transform: scale(1); }
-    84%, 100% { left: 18%; top: 90%; }
+    84%, 100% { left: 16%; top: 86%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-cursor { display: none; }
