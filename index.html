@@ -143,7 +143,13 @@
   .hero-row .dot-icon .icon { width: 12px; height: 12px; }
   .hero-badge-text  { background: rgba(96,165,250,.18); color: #7fb8fb; }
   .hero-badge-image { background: rgba(244,114,182,.18); color: #f492c6; }
-  .hero-row-fav { flex: none; color: #f6c945; display: flex; }
+  /* Favorite sits immediately left of expand, grouped as one cluster — not on its own on a
+     different row. That's the real app's actual pairing (image rows always show both; text
+     rows show the star if favorited/hovered, plus expand if the text is long enough). Showing
+     them on two separate, unrelated rows read as two unrelated indicators instead. */
+  .hero-row-icons { flex: none; display: flex; align-items: center; gap: 6px; }
+  .hero-row-fav { color: #f6c945; display: flex; }
+  .hero-row-fav.is-outline { color: var(--app-text-faint); opacity: .85; }
   .hero-row-fav .icon { width: 11px; height: 11px; }
   .hero-row-text { flex: 1; min-width: 0; }
   .hero-line1 { color: var(--app-text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -310,6 +316,7 @@
   <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4.3" y="7.3" width="12" height="14" rx="2.6"/><path d="M8.3 4.3h9.4a2.6 2.6 0 0 1 2.6 2.6v11.2"/></symbol>
   <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 8.6A1.6 1.6 0 0 1 5.6 7h2L9 5.3h6L16.4 7h2A1.6 1.6 0 0 1 20 8.6v8.8A1.6 1.6 0 0 1 18.4 19H5.6A1.6 1.6 0 0 1 4 17.4z"/><circle cx="12" cy="13" r="3.2"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.9l2.85 6.02 6.45.68-4.8 4.5 1.28 6.4L12 17.5l-5.78 3-1.28-6.4-4.8-4.5 6.45-.68z"/></symbol>
+  <symbol id="i-star-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2.9l2.85 6.02 6.45.68-4.8 4.5 1.28 6.4L12 17.5l-5.78 3-1.28-6.4-4.8-4.5 6.45-.68z"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2.4"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/></symbol>
   <symbol id="i-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M4 12s3.2-6 8-6c1.6 0 3 .5 4.1 1.2M20 12s-3.2 6-8 6c-1.6 0-3-.5-4.1-1.2"/><path d="M4 4l16 16"/><circle cx="12" cy="12" r="2.6"/></symbol>
   <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="8" cy="14.5" r="3.6"/><path d="M10.5 12 18 4.5M15.5 7l2 2M18 4.5l2 2"/></symbol>
@@ -362,7 +369,10 @@
           <div class="hero-row active">
             <span class="dot-icon hero-badge-image"><svg class="icon" width="12" height="12"><use href="#i-photo"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">Screenshot 2026-09-21</div><div class="hero-line2">2m ago</div></span>
-            <span class="hero-row-expand"><svg class="icon" width="10" height="10"><use href="#i-expand"/></svg></span>
+            <span class="hero-row-icons">
+              <span class="hero-row-fav is-outline"><svg class="icon" width="11" height="11"><use href="#i-star-outline"/></svg></span>
+              <span class="hero-row-expand"><svg class="icon" width="10" height="10"><use href="#i-expand"/></svg></span>
+            </span>
           </div>
           <div class="hero-row">
             <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
@@ -371,7 +381,9 @@
           <div class="hero-row">
             <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">Shipping address</div><div class="hero-line2">Favorite</div></span>
-            <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
+            <span class="hero-row-icons">
+              <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
+            </span>
           </div>
         </div>
       </div>
