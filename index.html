@@ -93,6 +93,7 @@
      mockup is meant to echo) — not a white card. These are scoped to .hero-visual precisely so
      they don't leak into the rest of the page, which deliberately stays a plain light theme. */
   .hero-visual {
+    container-type: inline-size;
     --app-surface: rgba(26,28,34,.88);
     --app-border: rgba(255,255,255,.09);
     --app-text: #f3f5f8;
@@ -112,19 +113,19 @@
   }
   .hero-menubar {
     position: absolute; top: 0; left: 0; right: 0;
-    display: flex; align-items: center; justify-content: flex-end; gap: 10px;
-    padding: 9px 14px;
-    font-size: 0.7rem; color: rgba(255,255,255,.75);
+    display: flex; align-items: center; justify-content: flex-end; gap: 2.083cqw;
+    padding: 1.875cqw 2.917cqw;
+    font-size: 2.333cqw; color: rgba(255,255,255,.75);
     background: linear-gradient(180deg, rgba(0,0,0,.14), transparent);
   }
-  .hero-menubar .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
+  .hero-menubar .dot { width: 1.25cqw; height: 1.25cqw; border-radius: 50%; background: rgba(255,255,255,.55); }
 
   .hero-panel {
     position: absolute; right: 4%; bottom: 6%; width: 60%;
     background: var(--app-surface);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--app-border);
-    border-radius: 16px;
+    border-radius: 3.333cqw;
     box-shadow: 0 20px 44px -16px rgba(0,0,0,.5);
     overflow: hidden;
     /* Grows down from the top, echoing the real panel's own "out of the menu bar" open
@@ -138,54 +139,144 @@
     10%, 84.2%  { opacity: 1; transform: scale(1) translateY(0); }
     87.4%, 100% { opacity: 0; transform: scale(.94) translateY(-6px); }
   }
+  /* Top chrome: search field, then the filter bar. The demo used to stop at the search field
+     and jump straight into the list, but the real panel always shows three filter chips under
+     it (date range, content kind, sort direction) — their absence was the most obvious
+     structural gap between this mockup and the app. */
+  .hero-panel-chrome { padding: 1.875cqw 2.083cqw 1.458cqw; display: flex; flex-direction: column; gap: 1.458cqw; }
   .hero-panel-search {
-    margin: 10px; padding: 7px 10px;
+    padding: 1.25cqw 1.875cqw;
     background: var(--app-field); border: 1px solid var(--app-border);
-    border-radius: 8px; font-size: 0.78rem; color: var(--app-text-faint);
-    display: flex; align-items: center; gap: 6px;
+    border-radius: 1.667cqw; font-size: 2.5cqw; color: var(--app-text-faint);
+    display: flex; align-items: center; gap: 1.25cqw;
   }
-  .hero-panel-list { padding: 0 8px 8px; display: flex; flex-direction: column; gap: 3px; }
-  .hero-row { display: flex; align-items: center; gap: 9px; padding: 6px 7px; border-radius: 8px; font-size: 0.78rem; }
+  .hero-filterbar { display: flex; align-items: center; gap: 1.25cqw; color: var(--app-text-dim); }
+  .hero-chip {
+    display: flex; align-items: center; gap: 0.833cqw;
+    padding: 0.625cqw 1.458cqw; border-radius: 999px;
+    background: var(--app-field);
+    font-size: 2.133cqw; font-weight: 500; white-space: nowrap;
+  }
+  .hero-chip .icon { width: 1.875cqw; height: 1.875cqw; flex: none; }
+  .hero-chip .caret { width: 1.458cqw; height: 1.458cqw; opacity: .7; }
+
+  /* Sticky date/favorites dividers between groups — a small caps label with a hairline rule
+     running to the edge, and a yellow star in front of the favorites group. */
+  .hero-section {
+    display: flex; align-items: center; gap: 1.25cqw;
+    padding: 1.25cqw 0.417cqw 0.417cqw;
+    font-size: 1.933cqw; font-weight: 600; letter-spacing: .06em;
+    color: var(--app-text-dim); text-transform: uppercase;
+  }
+  .hero-section .icon { width: 1.667cqw; height: 1.667cqw; color: #f6c945; flex: none; }
+  .hero-section .rule { flex: 1; height: 0.208cqw; background: rgba(255,255,255,.1); }
+
+  .hero-panel-list { padding: 0 1.667cqw 0.833cqw; display: flex; flex-direction: column; gap: 0.417cqw; }
+  .hero-row { display: flex; align-items: center; gap: 1.875cqw; padding: 1.042cqw 1.458cqw; border-radius: 1.667cqw; font-size: 2.5cqw; }
   .hero-row.active { background: var(--app-hover); }
   /* Tinted per content type — text vs. image — like the real app's badges (a 15%-opacity fill
      of the icon's own color), not one flat neutral square for every row regardless of kind. */
-  .hero-row .dot-icon { flex: none; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-  .hero-row .dot-icon .icon { width: 12px; height: 12px; }
+  .hero-row .dot-icon { flex: none; width: 4.583cqw; height: 4.583cqw; border-radius: 1.25cqw; display: flex; align-items: center; justify-content: center; }
+  .hero-row .dot-icon .icon { width: 2.5cqw; height: 2.5cqw; }
   .hero-badge-text  { background: rgba(96,165,250,.18); color: #7fb8fb; }
   .hero-badge-image { background: rgba(244,114,182,.18); color: #f492c6; }
   /* Favorite sits immediately left of expand, grouped as one cluster — not on its own on a
      different row. That's the real app's actual pairing (image rows always show both; text
      rows show the star if favorited/hovered, plus expand if the text is long enough). Showing
      them on two separate, unrelated rows read as two unrelated indicators instead. */
-  .hero-row-icons { flex: none; display: flex; align-items: center; gap: 6px; }
+  .hero-row-icons { flex: none; display: flex; align-items: center; gap: 1.25cqw; }
   .hero-row-fav { color: #f6c945; display: flex; }
   .hero-row-fav.is-outline { color: var(--app-text-faint); opacity: .85; }
-  .hero-row-fav .icon { width: 11px; height: 11px; }
+  .hero-row-fav .icon { width: 2.292cqw; height: 2.292cqw; }
   .hero-row-text { flex: 1; min-width: 0; }
   .hero-line1 { color: var(--app-text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hero-line2 { font-size: 0.68rem; color: var(--app-text-faint); }
+  .hero-line2 { font-size: 2.267cqw; color: var(--app-text-faint); }
   .hero-row-expand { flex: none; color: var(--app-text-faint); opacity: .85; }
-  .hero-row-expand .icon { width: 10px; height: 10px; }
+  .hero-row-expand .icon { width: 2.083cqw; height: 2.083cqw; }
+
+  /* An image row isn't a text row with a photo badge — in the app it's the thumbnail itself,
+     full width, with the timestamp on a chip over the bottom-left corner and the favorite and
+     expand buttons over the top-right, each on its own translucent disc so they stay legible
+     against whatever the picture happens to be. */
+  .hero-imagerow {
+    position: relative; margin: 0.417cqw 0;
+    height: 10.833cqw; border-radius: 1.875cqw; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.1);
+  }
+  .hero-imagerow-art {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, #fff 0%, #fff 3%, rgba(255,250,235,.5) 9%, rgba(255,250,235,0) 20%),
+      linear-gradient(180deg, #dff2e8 0%, #9fdac5 38%, #3fb195 72%, #16705f 100%);
+  }
+  .hero-imagerow-art::after {
+    content: ""; position: absolute; left: -4%; right: -4%; bottom: -10%; height: 62%;
+    background: linear-gradient(160deg, #0a2e28, #123f37 80%);
+    clip-path: polygon(0% 100%, 18% 46%, 34% 66%, 52% 24%, 70% 58%, 100% 34%, 100% 100%);
+  }
+  .hero-imagerow-time {
+    position: absolute; left: 1.25cqw; bottom: 1.25cqw;
+    padding: 0.208cqw 1.25cqw; border-radius: 999px;
+    background: rgba(0,0,0,.45); color: #fff;
+    font-size: 1.933cqw; font-weight: 500;
+  }
+  .hero-imagerow-icons {
+    position: absolute; right: 1.25cqw; top: 1.25cqw;
+    display: flex; align-items: center; gap: 0.833cqw;
+  }
+  .hero-imagerow-icons > span {
+    width: 3.333cqw; height: 3.333cqw; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.38);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+  }
+  .hero-imagerow-icons .icon { width: 1.875cqw; height: 1.875cqw; }
+
+  /* Item count, the ↵/esc key hints, and the settings button — the strip along the bottom of
+     the real panel, which the mockup cut off entirely. */
+  .hero-panel-footer {
+    display: flex; align-items: center; gap: 1.458cqw;
+    padding: 1.25cqw 2.083cqw 1.667cqw;
+    font-size: 2.0cqw; color: var(--app-text-faint);
+  }
+  .hero-panel-footer .spacer { flex: 1; }
+  .hero-keyhint { display: flex; align-items: center; gap: 0.625cqw; }
+  .hero-keyhint b {
+    font-weight: 600; padding: 0 0.625cqw; border-radius: 0.625cqw;
+    background: rgba(255,255,255,.1); color: var(--app-text-dim);
+  }
+  .hero-panel-footer .gear { width: 2.292cqw; height: 2.292cqw; opacity: .8; }
 
   /* The full-preview card, popped in front of the list panel — the feature the mockup was
      missing entirely; without it the hero showed the same plain list every clipboard manager
      has, not the thing that actually sets Coplify apart. */
+  /* The overlay lives *inside* the panel and fills it, exactly like the real one: a dimming
+     scrim over the list (the app draws black at 15%) with the card centred on top. Anchoring
+     the card to the panel's corner instead, with no scrim at all, was two more differences
+     from the app the demo had quietly accumulated. */
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.15);
+    animation: heroScrim 9.5s cubic-bezier(.65,0,.35,1) infinite;
+  }
+  @keyframes heroScrim {
+    0%, 29.9%     { opacity: 0; }
+    36.5%, 55.7%  { opacity: 1; }
+    61.6%, 100%   { opacity: 0; }
+  }
   .hero-preview {
-    /* Matches .hero-panel's own box (inset a couple of points) rather than floating as a
-       separate card beside it — in the real app the preview opens *inside* the same window,
-       covering the list, not next to it. The previous version sat to the left and partially
-       covered the search field, which read as broken rather than intentional. */
-    position: absolute; right: 5%; bottom: 7%; width: 58%;
+    width: 88%;
     background: var(--app-surface);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--app-border);
-    border-radius: 14px;
+    border-radius: 2.917cqw;
     box-shadow: 0 26px 52px -18px rgba(0,0,0,.6);
     overflow: hidden;
-    z-index: 2;
-    /* Measured against the rendered row-expand button's position within the panel, so the card
-       actually grows out of that spot instead of an eyeballed guess. */
-    transform-origin: 93% 61%;
+    /* Measured against the rendered expand button's position, so the card actually grows out
+       of the spot that was clicked rather than an eyeballed guess. */
+    transform-origin: 98% 66%;
     animation: heroPreviewPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
   }
   /* Same beats as before (closed → grow open → hold → shrink closed), just moved later in a
@@ -197,7 +288,7 @@
     61.6%, 100%   { opacity: 0; transform: scale(.12); }
   }
   .hero-cursor {
-    position: absolute; width: 14px; height: 14px; margin: -7px;
+    position: absolute; width: 2.917cqw; height: 2.917cqw; margin: -1.458cqw;
     z-index: 4; pointer-events: none;
     animation: heroCursor 9.5s cubic-bezier(.65,0,.35,1) infinite;
   }
@@ -214,10 +305,10 @@
     9%            { opacity: 0; }
     11%           { opacity: 1; }
     18.8%         { left: 16%; top: 86%; }
-    27.7%, 31.4%  { left: 92%; top: 72%; }
+    27.7%, 31.4%  { left: 91%; top: 62%; }
     32.1%         { transform: scale(.75); }
     33.6%         { transform: scale(1); }
-    52.7%, 57.2%  { left: 92%; top: 34%; }
+    52.7%, 57.2%  { left: 89%; top: 28%; }
     57.9%         { transform: scale(.75); }
     59.4%         { transform: scale(1); }
     71.9%, 83%    { left: 16%; top: 86%; }
@@ -229,21 +320,23 @@
      so it reads as something to actually look at rather than a passive loop you can't inspect. */
   .hero-visual:hover .hero-panel,
   .hero-visual:hover .hero-preview,
+  .hero-visual:hover .hero-overlay,
   .hero-visual:hover .hero-cursor {
     animation-play-state: paused;
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-cursor { display: none; }
     .hero-preview { animation: none; opacity: 1; transform: scale(1); }
+    .hero-overlay { animation: none; opacity: 1; }
     .hero-panel { animation: none; opacity: 1; transform: none; }
   }
   .hero-preview-head {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 10px;
+    padding: 1.667cqw 2.083cqw;
     background: rgba(255,255,255,.05);
-    font-size: 0.7rem; font-weight: 700; color: var(--app-text);
+    font-size: 2.333cqw; font-weight: 700; color: var(--app-text);
   }
-  .hero-preview-x { color: var(--app-text-faint); font-size: 0.85rem; line-height: 1; }
+  .hero-preview-x { color: var(--app-text-faint); font-size: 2.833cqw; line-height: 1; }
   /* A hazy sun and two mountain layers (atmospheric perspective: the farther range lighter
      and cooler, the nearer one darker and more saturated) instead of a flat color swatch or a
      single flat silhouette — standing in for an actual screenshot, this reads as a photo of
@@ -382,6 +475,12 @@
        not the generic camera/search/star glyphs the mockup used before. -->
   <symbol id="i-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></symbol>
   <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="14" rx="2.4"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor" stroke="none"/><path d="M20.5 15.5l-5.2-5-3.8 3.8-2.7-2-5.3 4.2"/></symbol>
+  <!-- The filter bar and footer the panel actually has: a date menu, a kind menu, a sort
+       toggle, and a settings button. -->
+  <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="3.5" y="5.5" width="17" height="15" rx="2.6"/><path d="M3.5 10h17M8 3.5v4M16 3.5v4"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.4a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9.1a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9.1a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.56 1.03z"/></symbol>
 </svg>
 
 <nav class="nav">
@@ -417,10 +516,18 @@
         <span>Fri 9 Jan 3:15 PM</span>
       </div>
       <div class="hero-panel">
-        <div class="hero-panel-search"><svg class="icon" width="12" height="12"><use href="#i-search"/></svg> Search</div>
+        <div class="hero-panel-chrome">
+          <div class="hero-panel-search"><svg class="icon" width="11" height="11"><use href="#i-search"/></svg> Search</div>
+          <div class="hero-filterbar">
+            <span class="hero-chip"><svg class="icon"><use href="#i-calendar"/></svg> All <svg class="caret"><use href="#i-chevron-down"/></svg></span>
+            <span class="hero-chip"><svg class="icon"><use href="#i-text"/></svg> All <svg class="caret"><use href="#i-chevron-down"/></svg></span>
+            <span class="hero-chip">New <svg class="icon"><use href="#i-arrow-right"/></svg> Old</span>
+          </div>
+        </div>
         <div class="hero-panel-list">
-          <!-- Favorites always sort first, regardless of date — same as the real list — so
+          <!-- Favorites get their own leading group, above the date groups — which is also why
                this row (the oldest of the three, "1h ago") sits above two newer ones. -->
+          <div class="hero-section"><svg class="icon"><use href="#i-star"/></svg> Favorites <span class="rule"></span></div>
           <div class="hero-row">
             <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">Shipping address</div><div class="hero-line2">1h ago</div></span>
@@ -428,12 +535,13 @@
               <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
             </span>
           </div>
-          <div class="hero-row active">
-            <span class="dot-icon hero-badge-image"><svg class="icon" width="12" height="12"><use href="#i-photo"/></svg></span>
-            <span class="hero-row-text"><div class="hero-line1">Screenshot 2026-09-21</div><div class="hero-line2">2m ago</div></span>
-            <span class="hero-row-icons">
-              <span class="hero-row-fav is-outline"><svg class="icon" width="11" height="11"><use href="#i-star-outline"/></svg></span>
-              <span class="hero-row-expand"><svg class="icon" width="10" height="10"><use href="#i-expand"/></svg></span>
+          <div class="hero-section">Today <span class="rule"></span></div>
+          <div class="hero-imagerow active">
+            <div class="hero-imagerow-art"></div>
+            <span class="hero-imagerow-time">2m ago</span>
+            <span class="hero-imagerow-icons">
+              <span class="hero-row-fav is-outline"><svg class="icon"><use href="#i-star-outline"/></svg></span>
+              <span class="hero-row-expand"><svg class="icon"><use href="#i-expand"/></svg></span>
             </span>
           </div>
           <div class="hero-row">
@@ -447,13 +555,22 @@
             </span>
           </div>
         </div>
-      </div>
-      <div class="hero-preview">
-        <div class="hero-preview-head">
-          <span>Preview</span>
-          <span class="hero-preview-x">✕</span>
+        <div class="hero-panel-footer">
+          <span>3 items</span>
+          <span class="spacer"></span>
+          <span class="hero-keyhint"><b>↵</b> Paste</span>
+          <span class="hero-keyhint"><b>esc</b> Close</span>
+          <svg class="gear"><use href="#i-gear"/></svg>
         </div>
-        <div class="hero-preview-img"></div>
+        <div class="hero-overlay">
+          <div class="hero-preview">
+            <div class="hero-preview-head">
+              <span>Preview</span>
+              <span class="hero-preview-x">✕</span>
+            </div>
+            <div class="hero-preview-img"></div>
+          </div>
+        </div>
       </div>
       <div class="hero-cursor"><span class="hero-cursor-dot"></span></div>
     </div>
