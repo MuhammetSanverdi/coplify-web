@@ -250,21 +250,33 @@
     font-size: 0.7rem; font-weight: 700; color: var(--app-text);
   }
   .hero-preview-x { color: var(--app-text-faint); font-size: 0.85rem; line-height: 1; }
-  /* A sun and a mountain silhouette, not a flat color swatch — this is standing in for an
-     actual screenshot, and an empty gradient card read as placeholder art rather than content. */
+  /* A hazy sun and two mountain layers (atmospheric perspective: the farther range lighter
+     and cooler, the nearer one darker and more saturated) instead of a flat color swatch or a
+     single flat silhouette — standing in for an actual screenshot, this reads as a photo of
+     something now, not placeholder art. */
   .hero-preview-img {
     aspect-ratio: 4 / 3;
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(circle at 76% 24%, #fff 0%, #fff 5%, rgba(255,255,255,0) 6.5%),
-      linear-gradient(180deg, #cdeee1 0%, #7ecfba 40%, #2fa88c 68%, #146055 100%);
+      radial-gradient(circle at 76% 22%, #fff 0%, #fff 3%, rgba(255,250,235,.55) 8%, rgba(255,250,235,0) 16%),
+      linear-gradient(180deg, #e8f6ee 0%, #b8e4cf 22%, #7ecfba 46%, #2fa88c 72%, #146055 100%);
   }
+  /* Far range: lighter and softer, sitting behind everything else. */
   .hero-preview-img::before {
     content: "";
-    position: absolute; left: -8%; right: -8%; bottom: -8%; height: 52%;
-    background: linear-gradient(160deg, #0c352e, #146055 70%);
-    clip-path: polygon(0% 100%, 20% 42%, 36% 60%, 54% 22%, 70% 54%, 100% 32%, 100% 100%);
+    position: absolute; left: -8%; right: -8%; bottom: -6%; height: 46%;
+    background: linear-gradient(160deg, #2c7d6c, #1e5f52 75%);
+    clip-path: polygon(0% 100%, 14% 55%, 30% 70%, 48% 38%, 64% 62%, 82% 44%, 100% 58%, 100% 100%);
+    opacity: .75;
+  }
+  /* Near range: darker, closer, overlapping the far one — the depth cue that made the single
+     silhouette read as a flat cutout instead of a landscape. */
+  .hero-preview-img::after {
+    content: "";
+    position: absolute; left: -8%; right: -8%; bottom: -8%; height: 40%;
+    background: linear-gradient(160deg, #0a2e28, #123f37 80%);
+    clip-path: polygon(0% 100%, 22% 40%, 38% 62%, 56% 18%, 74% 56%, 100% 30%, 100% 100%);
   }
 
   .shortcut-card {
