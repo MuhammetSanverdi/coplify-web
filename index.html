@@ -132,12 +132,12 @@
        animation — the demo now starts on a bare desktop and the panel actually appears,
        instead of just always being there. */
     transform-origin: 50% 0%;
-    animation: heroPanelPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroPanelPop 13s cubic-bezier(.65,0,.35,1) infinite;
   }
   @keyframes heroPanelPop {
-    0%, 6.3%    { opacity: 0; transform: scale(.94) translateY(-6px); }
-    10%, 84.2%  { opacity: 1; transform: scale(1) translateY(0); }
-    87.4%, 100% { opacity: 0; transform: scale(.94) translateY(-6px); }
+    0%, 5.4%    { opacity: 0; transform: scale(.94) translateY(-6px); }
+    8.5%, 88.5% { opacity: 1; transform: scale(1) translateY(0); }
+    91.5%, 100% { opacity: 0; transform: scale(.94) translateY(-6px); }
   }
   /* Top chrome: search field, then the filter bar. The demo used to stop at the search field
      and jump straight into the list, but the real panel always shows three filter chips under
@@ -259,12 +259,12 @@
     position: absolute; inset: 0; z-index: 2;
     display: flex; align-items: center; justify-content: center;
     background: rgba(0,0,0,.15);
-    animation: heroScrim 9.5s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroScrim 13s cubic-bezier(.65,0,.35,1) infinite;
   }
   @keyframes heroScrim {
-    0%, 29.9%     { opacity: 0; }
-    36.5%, 55.7%  { opacity: 1; }
-    61.6%, 100%   { opacity: 0; }
+    0%, 20.8%     { opacity: 0; }
+    27.7%, 51.5%  { opacity: 1; }
+    58.5%, 100%   { opacity: 0; }
   }
   .hero-preview {
     width: 88%;
@@ -277,20 +277,21 @@
     /* Measured against the rendered expand button's position, so the card actually grows out
        of the spot that was clicked rather than an eyeballed guess. */
     transform-origin: 98% 66%;
-    animation: heroPreviewPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroPreviewPop 13s cubic-bezier(.65,0,.35,1) infinite;
   }
   /* Same beats as before (closed → grow open → hold → shrink closed), just moved later in a
-     longer 9.5s loop so they land *after* the panel itself has finished opening — the full
-     story is now: bare desktop, panel opens, a row's preview opens, it closes, panel closes. */
+     13s loop: the list stays on screen noticeably longer either side of the preview (~1.6s
+     before, ~3.9s after), and the card's grow and shrink each take ~0.9s rather than ~0.6s.
+     The full story: bare desktop, panel opens, a row's preview opens, it closes, panel closes. */
   @keyframes heroPreviewPop {
-    0%, 29.9%     { opacity: 0; transform: scale(.12); }
-    36.5%, 55.7%  { opacity: 1; transform: scale(1); }
-    61.6%, 100%   { opacity: 0; transform: scale(.12); }
+    0%, 20.8%     { opacity: 0; transform: scale(.12); }
+    27.7%, 51.5%  { opacity: 1; transform: scale(1); }
+    58.5%, 100%   { opacity: 0; transform: scale(.12); }
   }
   .hero-cursor {
     position: absolute; width: 2.917cqw; height: 2.917cqw; margin: -1.458cqw;
     z-index: 4; pointer-events: none;
-    animation: heroCursor 9.5s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroCursor 13s cubic-bezier(.65,0,.35,1) infinite;
   }
   .hero-cursor-dot {
     display: block; width: 100%; height: 100%; border-radius: 50%;
@@ -301,20 +302,22 @@
        the row's expand button and the preview's close button, in hero-visual-relative %.
        Opacity keeps the cursor hidden until the panel has actually opened, and hides it again
        once the panel closes — it shouldn't be sitting there waiting on a bare desktop. */
-    0%            { left: 16%; top: 86%; opacity: 0; }
-    9%            { opacity: 0; }
-    11%           { opacity: 1; }
-    18.8%         { left: 16%; top: 86%; }
-    27.7%, 31.4%  { left: 91%; top: 62%; }
-    32.1%         { transform: scale(.75); }
-    33.6%         { transform: scale(1); }
-    52.7%, 57.2%  { left: 89%; top: 28%; }
-    57.9%         { transform: scale(.75); }
-    59.4%         { transform: scale(1); }
-    71.9%, 83%    { left: 16%; top: 86%; }
-    86%           { opacity: 1; }
-    87%           { opacity: 0; }
-    100%          { left: 16%; top: 86%; opacity: 0; }
+    0%     { left: 16%; top: 86%; transform: scale(1); opacity: 0; }
+    7.5%   { opacity: 0; }
+    9.5%   { opacity: 1; }
+    15.4%  { left: 16%; top: 86%; }
+    19.2%  { left: 91%; top: 62%; transform: scale(1); }
+    19.8%  { transform: scale(.75); }
+    20.8%  { transform: scale(1); }
+    46.2%  { left: 91%; top: 62%; }
+    50%    { left: 89%; top: 28%; transform: scale(1); }
+    50.6%  { transform: scale(.75); }
+    51.5%  { transform: scale(1); }
+    62%    { left: 89%; top: 28%; }
+    66.2%  { left: 16%; top: 86%; }
+    89%    { opacity: 1; }
+    92%    { opacity: 0; }
+    100%   { left: 16%; top: 86%; transform: scale(1); opacity: 0; }
   }
   /* Hovering the demo pauses it in place — mid-preview, mid-click, wherever it happens to be —
      so it reads as something to actually look at rather than a passive loop you can't inspect. */
