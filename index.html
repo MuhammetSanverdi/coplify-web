@@ -109,7 +109,7 @@
   .hero-menubar .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.55); }
 
   .hero-panel {
-    position: absolute; right: 7%; bottom: 8%; width: 68%;
+    position: absolute; right: 4%; bottom: 6%; width: 60%;
     background: var(--surface);
     border-radius: 16px;
     box-shadow: 0 20px 44px -16px rgba(8,20,17,.45);
@@ -129,6 +129,29 @@
   .hero-row .dot-icon .icon { width: 12px; height: 12px; }
   .hero-line1 { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .hero-line2 { font-size: 0.68rem; color: var(--text-faint); }
+
+  /* The full-preview card, popped in front of the list panel — the feature the mockup was
+     missing entirely; without it the hero showed the same plain list every clipboard manager
+     has, not the thing that actually sets Coplify apart. */
+  .hero-preview {
+    position: absolute; left: 6%; top: 11%; width: 47%;
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: 0 26px 52px -18px rgba(8,20,17,.55);
+    overflow: hidden;
+    z-index: 2;
+  }
+  .hero-preview-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px;
+    background: rgba(20,96,85,.07);
+    font-size: 0.7rem; font-weight: 700; color: var(--text);
+  }
+  .hero-preview-x { color: var(--text-faint); font-size: 0.85rem; line-height: 1; }
+  .hero-preview-img {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #7ecfba, #2fa88c 45%, #146055 85%);
+  }
 
   .shortcut-card {
     max-width: 300px; margin: 0 auto; margin-top: 44px;
@@ -282,6 +305,13 @@
             <span><div class="hero-line1">Shipping address</div><div class="hero-line2">Favorite</div></span>
           </div>
         </div>
+      </div>
+      <div class="hero-preview">
+        <div class="hero-preview-head">
+          <span>Preview</span>
+          <span class="hero-preview-x">✕</span>
+        </div>
+        <div class="hero-preview-img"></div>
       </div>
     </div>
   </section>
