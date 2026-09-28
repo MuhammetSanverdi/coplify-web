@@ -89,7 +89,18 @@
   .price-note { margin-top: 10px; font-size: 0.86rem; color: var(--text-faint); }
 
   /* ---------- hero visual ---------- */
+  /* The real app's panel is a dark, translucent glass card (see the actual screenshots this
+     mockup is meant to echo) — not a white card. These are scoped to .hero-visual precisely so
+     they don't leak into the rest of the page, which deliberately stays a plain light theme. */
   .hero-visual {
+    --app-surface: rgba(26,28,34,.88);
+    --app-border: rgba(255,255,255,.09);
+    --app-text: #f3f5f8;
+    --app-text-dim: rgba(243,245,248,.58);
+    --app-text-faint: rgba(243,245,248,.38);
+    --app-field: rgba(255,255,255,.07);
+    --app-hover: rgba(255,255,255,.08);
+
     position: relative;
     border-radius: 24px;
     overflow: hidden;
@@ -110,27 +121,29 @@
 
   .hero-panel {
     position: absolute; right: 4%; bottom: 6%; width: 60%;
-    background: var(--surface);
+    background: var(--app-surface);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--app-border);
     border-radius: 16px;
-    box-shadow: 0 20px 44px -16px rgba(8,20,17,.45);
+    box-shadow: 0 20px 44px -16px rgba(0,0,0,.5);
     overflow: hidden;
   }
   .hero-panel-search {
     margin: 10px; padding: 7px 10px;
-    background: var(--kbd-bg); border: 1px solid var(--border);
-    border-radius: 8px; font-size: 0.78rem; color: var(--text-faint);
+    background: var(--app-field); border: 1px solid var(--app-border);
+    border-radius: 8px; font-size: 0.78rem; color: var(--app-text-faint);
     display: flex; align-items: center; gap: 6px;
   }
   .hero-panel-list { padding: 0 8px 8px; display: flex; flex-direction: column; gap: 3px; }
   .hero-row { display: flex; align-items: center; gap: 9px; padding: 6px 7px; border-radius: 8px; font-size: 0.78rem; }
-  .hero-row.active { background: var(--accent-tint); }
-  .hero-row .dot-icon { flex: none; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: var(--kbd-bg); color: var(--text-faint); }
-  .hero-row.active .dot-icon { background: var(--accent); color: #fff; }
+  .hero-row.active { background: var(--app-hover); }
+  .hero-row .dot-icon { flex: none; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: var(--app-field); color: var(--app-text-faint); }
+  .hero-row.active .dot-icon { background: var(--accent-2); color: #fff; }
   .hero-row .dot-icon .icon { width: 12px; height: 12px; }
   .hero-row-text { flex: 1; min-width: 0; }
-  .hero-line1 { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hero-line2 { font-size: 0.68rem; color: var(--text-faint); }
-  .hero-row-expand { flex: none; color: var(--text-faint); opacity: .8; }
+  .hero-line1 { color: var(--app-text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-line2 { font-size: 0.68rem; color: var(--app-text-faint); }
+  .hero-row-expand { flex: none; color: var(--app-text-faint); opacity: .85; }
   .hero-row-expand .icon { width: 10px; height: 10px; }
 
   /* The full-preview card, popped in front of the list panel — the feature the mockup was
@@ -142,9 +155,11 @@
        covering the list, not next to it. The previous version sat to the left and partially
        covered the search field, which read as broken rather than intentional. */
     position: absolute; right: 5%; bottom: 7%; width: 58%;
-    background: var(--surface);
+    background: var(--app-surface);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--app-border);
     border-radius: 14px;
-    box-shadow: 0 26px 52px -18px rgba(8,20,17,.55);
+    box-shadow: 0 26px 52px -18px rgba(0,0,0,.6);
     overflow: hidden;
     z-index: 2;
     /* Measured against the rendered row-expand button's position within the panel, so the card
@@ -185,10 +200,10 @@
   .hero-preview-head {
     display: flex; align-items: center; justify-content: space-between;
     padding: 8px 10px;
-    background: rgba(20,96,85,.07);
-    font-size: 0.7rem; font-weight: 700; color: var(--text);
+    background: rgba(255,255,255,.05);
+    font-size: 0.7rem; font-weight: 700; color: var(--app-text);
   }
-  .hero-preview-x { color: var(--text-faint); font-size: 0.85rem; line-height: 1; }
+  .hero-preview-x { color: var(--app-text-faint); font-size: 0.85rem; line-height: 1; }
   .hero-preview-img {
     aspect-ratio: 4 / 3;
     background: linear-gradient(135deg, #7ecfba, #2fa88c 45%, #146055 85%);
