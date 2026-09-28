@@ -153,12 +153,6 @@
   .hero-row .dot-icon .icon { width: 12px; height: 12px; }
   .hero-badge-text  { background: rgba(96,165,250,.18); color: #7fb8fb; }
   .hero-badge-image { background: rgba(244,114,182,.18); color: #f492c6; }
-  /* The real app shows the source app's own icon whenever it knows one, falling back to a
-     flat type badge only when it doesn't (a screenshot, for instance, has no source app). A
-     generic square for every row understated how common the app-icon case actually is. */
-  .hero-appicon { border-radius: 6px; }
-  .hero-appicon-notes   { background: linear-gradient(160deg, #ffd66b, #ff9f40); color: rgba(48,26,0,.62); }
-  .hero-appicon-browser { background: linear-gradient(160deg, #6cc3ff, #2f7dea); color: #fff; }
   /* Favorite sits immediately left of expand, grouped as one cluster — not on its own on a
      different row. That's the real app's actual pairing (image rows always show both; text
      rows show the star if favorited/hovered, plus expand if the text is long enough). Showing
@@ -388,10 +382,6 @@
        not the generic camera/search/star glyphs the mockup used before. -->
   <symbol id="i-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></symbol>
   <symbol id="i-photo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="14" rx="2.4"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor" stroke="none"/><path d="M20.5 15.5l-5.2-5-3.8 3.8-2.7-2-5.3 4.2"/></symbol>
-  <!-- Generic, invented glyphs standing in for "this came from a real Mac app" — a notepad
-       mark and a compass/nav mark — not any actual app's trademarked icon artwork. -->
-  <symbol id="i-notepad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="6" y1="8" x2="18" y2="8"/><line x1="6" y1="12.5" x2="18" y2="12.5"/><line x1="6" y1="17" x2="13" y2="17"/></symbol>
-  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.2 8.8l-2.1 4.9-4.9 2.1 2.1-4.9z" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
 <nav class="nav">
@@ -432,7 +422,7 @@
           <!-- Favorites always sort first, regardless of date — same as the real list — so
                this row (the oldest of the three, "1h ago") sits above two newer ones. -->
           <div class="hero-row">
-            <span class="dot-icon hero-appicon hero-appicon-notes"><svg class="icon" width="12" height="12"><use href="#i-notepad"/></svg></span>
+            <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">Shipping address</div><div class="hero-line2">1h ago</div></span>
             <span class="hero-row-icons">
               <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
@@ -447,7 +437,7 @@
             </span>
           </div>
           <div class="hero-row">
-            <span class="dot-icon hero-appicon hero-appicon-browser"><svg class="icon" width="12" height="12"><use href="#i-compass"/></svg></span>
+            <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">developer.apple.com/design/…</div><div class="hero-line2">14m ago</div></span>
             <!-- Truncated text implies it's over the real app's 44-character isExpandable
                  threshold, so this row would actually show the expand button too — no star,
