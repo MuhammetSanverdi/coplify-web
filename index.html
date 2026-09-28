@@ -185,7 +185,7 @@
     z-index: 2;
     /* Measured against the rendered row-expand button's position within the panel, so the card
        actually grows out of that spot instead of an eyeballed guess. */
-    transform-origin: 93% 35%;
+    transform-origin: 93% 61%;
     animation: heroPreviewPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
   }
   /* Same beats as before (closed → grow open → hold → shrink closed), just moved later in a
@@ -214,7 +214,7 @@
     9%            { opacity: 0; }
     11%           { opacity: 1; }
     18.8%         { left: 16%; top: 86%; }
-    27.7%, 31.4%  { left: 92%; top: 58%; }
+    27.7%, 31.4%  { left: 92%; top: 72%; }
     32.1%         { transform: scale(.75); }
     33.6%         { transform: scale(1); }
     52.7%, 57.2%  { left: 92%; top: 41%; }
@@ -395,6 +395,15 @@
       <div class="hero-panel">
         <div class="hero-panel-search"><svg class="icon" width="12" height="12"><use href="#i-search"/></svg> Search</div>
         <div class="hero-panel-list">
+          <!-- Favorites always sort first, regardless of date — same as the real list — so
+               this row (the oldest of the three, "1h ago") sits above two newer ones. -->
+          <div class="hero-row">
+            <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
+            <span class="hero-row-text"><div class="hero-line1">Shipping address</div><div class="hero-line2">1h ago</div></span>
+            <span class="hero-row-icons">
+              <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
+            </span>
+          </div>
           <div class="hero-row active">
             <span class="dot-icon hero-badge-image"><svg class="icon" width="12" height="12"><use href="#i-photo"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">Screenshot 2026-09-21</div><div class="hero-line2">2m ago</div></span>
@@ -406,13 +415,6 @@
           <div class="hero-row">
             <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
             <span class="hero-row-text"><div class="hero-line1">developer.apple.com/design/…</div><div class="hero-line2">14m ago</div></span>
-          </div>
-          <div class="hero-row">
-            <span class="dot-icon hero-badge-text"><svg class="icon" width="12" height="12"><use href="#i-text"/></svg></span>
-            <span class="hero-row-text"><div class="hero-line1">Shipping address</div><div class="hero-line2">1h ago</div></span>
-            <span class="hero-row-icons">
-              <span class="hero-row-fav"><svg class="icon" width="11" height="11"><use href="#i-star"/></svg></span>
-            </span>
           </div>
         </div>
       </div>
