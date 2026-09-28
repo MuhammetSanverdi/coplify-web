@@ -127,6 +127,16 @@
     border-radius: 16px;
     box-shadow: 0 20px 44px -16px rgba(0,0,0,.5);
     overflow: hidden;
+    /* Grows down from the top, echoing the real panel's own "out of the menu bar" open
+       animation — the demo now starts on a bare desktop and the panel actually appears,
+       instead of just always being there. */
+    transform-origin: 50% 0%;
+    animation: heroPanelPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
+  }
+  @keyframes heroPanelPop {
+    0%, 6.3%    { opacity: 0; transform: scale(.94) translateY(-6px); }
+    10%, 84.2%  { opacity: 1; transform: scale(1) translateY(0); }
+    87.4%, 100% { opacity: 0; transform: scale(.94) translateY(-6px); }
   }
   .hero-panel-search {
     margin: 10px; padding: 7px 10px;
@@ -176,17 +186,20 @@
     /* Measured against the rendered row-expand button's position within the panel, so the card
        actually grows out of that spot instead of an eyeballed guess. */
     transform-origin: 93% 35%;
-    animation: heroPreviewPop 7s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroPreviewPop 9.5s cubic-bezier(.65,0,.35,1) infinite;
   }
+  /* Same beats as before (closed → grow open → hold → shrink closed), just moved later in a
+     longer 9.5s loop so they land *after* the panel itself has finished opening — the full
+     story is now: bare desktop, panel opens, a row's preview opens, it closes, panel closes. */
   @keyframes heroPreviewPop {
-    0%, 27%   { opacity: 0; transform: scale(.12); }
-    36%, 62%  { opacity: 1; transform: scale(1); }
-    70%, 100% { opacity: 0; transform: scale(.12); }
+    0%, 29.9%     { opacity: 0; transform: scale(.12); }
+    36.5%, 55.7%  { opacity: 1; transform: scale(1); }
+    61.6%, 100%   { opacity: 0; transform: scale(.12); }
   }
   .hero-cursor {
     position: absolute; width: 14px; height: 14px; margin: -7px;
     z-index: 4; pointer-events: none;
-    animation: heroCursor 7s cubic-bezier(.65,0,.35,1) infinite;
+    animation: heroCursor 9.5s cubic-bezier(.65,0,.35,1) infinite;
   }
   .hero-cursor-dot {
     display: block; width: 100%; height: 100%; border-radius: 50%;
@@ -194,19 +207,35 @@
   }
   @keyframes heroCursor {
     /* Positions measured against the rendered page (getBoundingClientRect), not eyeballed —
-       the row's expand button and the preview's close button, in hero-visual-relative %. */
-    0%, 12%   { left: 16%; top: 86%; }
-    24%, 29%  { left: 92%; top: 58%; }
-    30%       { left: 92%; top: 58%; transform: scale(.75); }
-    32%       { transform: scale(1); }
-    58%, 64%  { left: 92%; top: 41%; }
-    65%       { left: 92%; top: 41%; transform: scale(.75); }
-    67%       { transform: scale(1); }
-    84%, 100% { left: 16%; top: 86%; }
+       the row's expand button and the preview's close button, in hero-visual-relative %.
+       Opacity keeps the cursor hidden until the panel has actually opened, and hides it again
+       once the panel closes — it shouldn't be sitting there waiting on a bare desktop. */
+    0%            { left: 16%; top: 86%; opacity: 0; }
+    9%            { opacity: 0; }
+    11%           { opacity: 1; }
+    18.8%         { left: 16%; top: 86%; }
+    27.7%, 31.4%  { left: 92%; top: 58%; }
+    32.1%         { transform: scale(.75); }
+    33.6%         { transform: scale(1); }
+    52.7%, 57.2%  { left: 92%; top: 41%; }
+    57.9%         { transform: scale(.75); }
+    59.4%         { transform: scale(1); }
+    71.9%, 83%    { left: 16%; top: 86%; }
+    86%           { opacity: 1; }
+    87%           { opacity: 0; }
+    100%          { left: 16%; top: 86%; opacity: 0; }
+  }
+  /* Hovering the demo pauses it in place — mid-preview, mid-click, wherever it happens to be —
+     so it reads as something to actually look at rather than a passive loop you can't inspect. */
+  .hero-visual:hover .hero-panel,
+  .hero-visual:hover .hero-preview,
+  .hero-visual:hover .hero-cursor {
+    animation-play-state: paused;
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-cursor { display: none; }
     .hero-preview { animation: none; opacity: 1; transform: scale(1); }
+    .hero-panel { animation: none; opacity: 1; transform: none; }
   }
   .hero-preview-head {
     display: flex; align-items: center; justify-content: space-between;
