@@ -127,8 +127,11 @@
   .hero-row .dot-icon { flex: none; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: var(--kbd-bg); color: var(--text-faint); }
   .hero-row.active .dot-icon { background: var(--accent); color: #fff; }
   .hero-row .dot-icon .icon { width: 12px; height: 12px; }
+  .hero-row-text { flex: 1; min-width: 0; }
   .hero-line1 { color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .hero-line2 { font-size: 0.68rem; color: var(--text-faint); }
+  .hero-row-expand { flex: none; color: var(--text-faint); opacity: .8; }
+  .hero-row-expand .icon { width: 10px; height: 10px; }
 
   /* The full-preview card, popped in front of the list panel — the feature the mockup was
      missing entirely; without it the hero showed the same plain list every clipboard manager
@@ -140,6 +143,38 @@
     box-shadow: 0 26px 52px -18px rgba(8,20,17,.55);
     overflow: hidden;
     z-index: 2;
+    /* Roughly where the row's expand button sits, so the card visually grows out of the spot
+       that was "clicked" instead of just materializing from its own center. */
+    transform-origin: 90% 22%;
+    animation: heroPreviewPop 7s cubic-bezier(.65,0,.35,1) infinite;
+  }
+  @keyframes heroPreviewPop {
+    0%, 27%   { opacity: 0; transform: scale(.12); }
+    36%, 62%  { opacity: 1; transform: scale(1); }
+    70%, 100% { opacity: 0; transform: scale(.12); }
+  }
+  .hero-cursor {
+    position: absolute; width: 14px; height: 14px; margin: -7px;
+    z-index: 4; pointer-events: none;
+    animation: heroCursor 7s cubic-bezier(.65,0,.35,1) infinite;
+  }
+  .hero-cursor-dot {
+    display: block; width: 100%; height: 100%; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 0 2px var(--accent), 0 3px 8px rgba(8,20,17,.4);
+  }
+  @keyframes heroCursor {
+    0%, 12%   { left: 18%; top: 90%; }
+    24%, 29%  { left: 91%; top: 34%; }
+    30%       { left: 91%; top: 34%; transform: scale(.75); }
+    32%       { transform: scale(1); }
+    58%, 64%  { left: 50%; top: 15%; }
+    65%       { left: 50%; top: 15%; transform: scale(.75); }
+    67%       { transform: scale(1); }
+    84%, 100% { left: 18%; top: 90%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cursor { display: none; }
+    .hero-preview { animation: none; opacity: 1; transform: scale(1); }
   }
   .hero-preview-head {
     display: flex; align-items: center; justify-content: space-between;
@@ -294,7 +329,8 @@
         <div class="hero-panel-list">
           <div class="hero-row active">
             <span class="dot-icon"><svg class="icon" width="12" height="12"><use href="#i-camera"/></svg></span>
-            <span><div class="hero-line1">Screenshot 2026-09-21</div><div class="hero-line2">2m ago</div></span>
+            <span class="hero-row-text"><div class="hero-line1">Screenshot 2026-09-21</div><div class="hero-line2">2m ago</div></span>
+            <span class="hero-row-expand"><svg class="icon" width="10" height="10"><use href="#i-expand"/></svg></span>
           </div>
           <div class="hero-row">
             <span class="dot-icon"><svg class="icon" width="12" height="12"><use href="#i-search"/></svg></span>
@@ -313,6 +349,7 @@
         </div>
         <div class="hero-preview-img"></div>
       </div>
+      <div class="hero-cursor"><span class="hero-cursor-dot"></span></div>
     </div>
   </section>
 
