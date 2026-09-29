@@ -373,9 +373,11 @@
   }
 
   .shortcut-card {
-    max-width: 300px; margin: 0 auto; margin-top: 44px;
+    /* Wide enough for the caption to sit on one line — it wrapped at 300px, which split the
+       one sentence the card exists to say. */
+    max-width: 370px; margin: 0 auto; margin-top: 44px;
     background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
-    padding: 22px 26px; text-align: center;
+    padding: 22px 28px; text-align: center;
   }
   .shortcut-keys { display: flex; align-items: center; justify-content: center; gap: 10px; }
   .key {
