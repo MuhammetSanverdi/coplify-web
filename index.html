@@ -387,6 +387,10 @@
   }
   .plus { color: var(--text-faint); font-size: 1.1rem; }
   .shortcut-caption { margin-top: 12px; color: var(--text-dim); font-size: 0.92rem; }
+  /* Objection handling belongs next to the thing it's about, not buried in the FAQ: ⌘⇧V is
+     already spoken for in Docs, Slack and a lot of editors, so anyone who lives in those reads
+     this card and thinks "that one's taken". Subordinate weight keeps the card a single idea. */
+  .shortcut-note { margin: 6px 0 0; color: var(--text-faint); font-size: 0.8rem; }
 
   /* ---------- sections ---------- */
   section.block { padding-block: 64px; }
@@ -587,6 +591,7 @@
       <span class="key">⌘</span><span class="plus">+</span><span class="key">⇧</span><span class="plus">+</span><span class="key">V</span>
     </div>
     <p class="shortcut-caption">Open your clipboard history instantly</p>
+    <p class="shortcut-note">Already taken? Rebind it in Settings.</p>
   </div>
 </div>
 
