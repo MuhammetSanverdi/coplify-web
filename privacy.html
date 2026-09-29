@@ -97,7 +97,7 @@
 
 <main>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated September 22, 2026</p>
+  <p class="updated">Last updated September 29, 2026</p>
 
   <p class="summary">
     <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any
@@ -147,10 +147,11 @@
     <p>
       If you choose to enable sync, Coplify writes your clipboard history as
       files inside a folder you pick yourself — for example, a folder inside
-      iCloud Drive or Dropbox. Coplify does not operate this transport; it
-      only reads and writes files there, using the same account and
-      encryption you already trust for that folder. Turning sync off stops
-      this entirely.
+      iCloud Drive or Dropbox. Images are not included: they stay on the Mac
+      that copied them and are never written to the sync folder. Coplify does
+      not operate this transport; it only reads and writes files there, using
+      the same account and encryption you already trust for that folder.
+      Turning sync off stops this entirely.
     </p>
   </section>
 
@@ -167,9 +168,13 @@
   <section>
     <h2>Data retention and deletion</h2>
     <p>
-      History stays on your Mac until you clear it from within Coplify or
-      remove the app. Uninstalling Coplify and deleting
-      <span class="path">~/Library/Application Support/Coplify/</span>
+      Coplify trims its own history as it goes: entries older than the
+      retention window you pick in Settings (a week, a month, three months, a
+      year, or forever — new installs start at one month) are deleted
+      automatically, as are the oldest entries once the history passes 2,000
+      items. Favorites are exempt from both. You can also clear the history
+      yourself at any time, keeping favorites or not. Uninstalling Coplify and
+      deleting <span class="path">~/Library/Application Support/Coplify/</span>
       removes all locally stored data.
     </p>
   </section>
