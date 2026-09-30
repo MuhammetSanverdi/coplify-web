@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coplify — Support</title>
+<meta name="description" content="Help with Coplify for macOS: getting started, the permissions it asks for, troubleshooting, and how to get in touch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg: #eef4fb;
+    --surface: #ffffff;
+    --text: #10192b;
+    --text-dim: #5b6a80;
+    --text-faint: #8b97a8;
+    --accent: #146055;
+    --accent-tint: #e3f1ec;
+    --border: #dde6f1;
+    --kbd-bg: #f4f7fb;
+    --kbd-border: #dbe3ee;
+  }
+  html { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2 { font-family: "Plus Jakarta Sans", "Inter", sans-serif; font-weight: 800; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px max(20px, calc((100% - 1040px) / 2));
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-crumbs .brand { font-weight: 700; text-decoration: none; color: var(--text); font-family: "Inter", sans-serif; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.92rem; }
+  .nav-links a { text-decoration: none; color: var(--text-dim); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a[aria-current="page"] { color: var(--accent); font-weight: 600; }
+
+  main { max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; }
+
+  h1 { font-size: 2rem; }
+  .lede { color: var(--text-dim); margin: 14px 0 0; max-width: 60ch; }
+
+  /* ---------- contact ---------- */
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  @media (max-width: 560px) { .contact { grid-template-columns: 1fr; } }
+  .contact-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-card:hover { border-color: var(--accent); text-decoration: none; }
+  .contact-card.primary { background: var(--accent-tint); border-color: transparent; }
+  .contact-card .label {
+    font-size: 0.74rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--accent); margin-bottom: 6px;
+  }
+  .contact-card .value { font-weight: 600; word-break: break-word; }
+  .contact-card .note { color: var(--text-dim); font-size: 0.9rem; margin-top: 6px; }
+
+  section { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--border); }
+  section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 14px; }
+  section p { margin: 0 0 10px; color: var(--text-dim); max-width: 62ch; }
+  section p:last-child { margin-bottom: 0; }
+
+  .qa + .qa { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); }
+  .qa h3 { font-family: "Inter", sans-serif; font-size: 1.02rem; font-weight: 700; margin: 0 0 6px; color: var(--text); }
+  .qa p { font-size: 0.96rem; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .card .perm-name {
+    font-size: 0.74rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--accent); margin-bottom: 8px;
+  }
+  .card p { margin: 0; font-size: 0.94rem; }
+
+  kbd {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.82em; background: var(--kbd-bg); border: 1px solid var(--kbd-border);
+    border-radius: 5px; padding: 2px 6px; color: var(--text);
+  }
+  .path, code {
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.88em;
+    background: var(--kbd-bg);
+    padding: 1px 6px;
+    border-radius: 5px;
+    word-break: break-word;
+  }
+
+  footer {
+    max-width: 1040px; margin: 0 auto;
+    padding: 32px 20px 56px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint); font-size: 0.86rem;
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-crumbs"><a class="brand" href="./">Coplify</a></div>
+  <div class="nav-links">
+    <a href="./">Home</a>
+    <a href="support.html" aria-current="page">Support</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Support</h1>
+  <p class="lede">
+    Something not working, a question, or an idea for what Coplify should do
+    next? Get in touch — every message is read by the person who makes it.
+  </p>
+
+  <div class="contact">
+    <a class="contact-card primary" href="mailto:coplifyapp@gmail.com">
+      <div class="label">Email</div>
+      <div class="value">coplifyapp@gmail.com</div>
+      <p class="note">The quickest way, and no account needed.</p>
+    </a>
+    <a class="contact-card" href="https://github.com/MuhammetSanverdi/coplify-web/issues">
+      <div class="label">Bug reports</div>
+      <div class="value">GitHub Issues</div>
+      <p class="note">If you'd rather file it publicly and follow the fix.</p>
+    </a>
+  </div>
+
+  <section>
+    <h2>Getting started</h2>
+
+    <div class="qa">
+      <h3>How do I bring up my clipboard history?</h3>
+      <p>
+        Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the
+        Coplify icon in the menu bar. Start typing to filter, then press
+        <kbd>Return</kbd> to paste the selected item.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Can I keep something permanently?</h3>
+      <p>
+        Star it. Favorites stay pinned to the top, are never removed
+        automatically, and survive <em>Clear history (keep favorites)</em>.
+        Only <em>Clear everything</em> takes them too.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Can I narrow down a long history?</h3>
+      <p>
+        The calendar menu under the search field filters by date, and the menu
+        beside it narrows to one kind of content — text, links, images or
+        files. A toggle switches between newest-first and oldest-first;
+        favorites stay on top either way.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>How do I launch Coplify at login?</h3>
+      <p>
+        System Settings → General → Login Items → <kbd>+</kbd> → add
+        Coplify.app.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Permissions it may ask for</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="perm-name">Accessibility</div>
+        <p>
+          Lets Coplify press <kbd>⌘</kbd><kbd>V</kbd> for you, so the item you
+          pick lands straight in the app you were using. Decline it and
+          everything still works — the item goes to your clipboard and you
+          paste it yourself.
+        </p>
+      </div>
+      <div class="card">
+        <div class="perm-name">Screenshot folder</div>
+        <p>
+          Optional. Point Coplify at the folder macOS saves screenshots to and
+          new captures join your history the moment they're taken — even the
+          ones you never copied. Only that folder is read, and only to look
+          for new screenshots.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Troubleshooting</h2>
+
+    <div class="qa">
+      <h3><kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> doesn't open anything</h3>
+      <p>
+        Another app has probably claimed it — several editors use that
+        combination for paste-without-formatting. Open Coplify's Settings and
+        record a different shortcut; the menu bar icon works regardless.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Items copy, but don't paste automatically</h3>
+      <p>
+        That's the Accessibility permission. Go to System Settings → Privacy &
+        Security → Accessibility and switch Coplify on. If it's already on,
+        switch it off and back on — macOS occasionally holds on to a stale
+        entry after an app updates.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Screenshots aren't showing up</h3>
+      <p>
+        Coplify can only watch a folder you've handed it yourself. Open
+        Settings and choose the folder macOS saves your screenshots to —
+        that's the Desktop unless you've changed it. If you moved that folder
+        afterwards, choose it again.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Older items disappeared</h3>
+      <p>
+        Coplify removes entries once they pass the retention window in
+        Settings — a week, a month, three months, a year, or forever, and new
+        installs start at one month. Nothing else deletes on its own; set it
+        to forever and nothing is ever removed. Favorites are never trimmed.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>Sync isn't picking up my other Mac</h3>
+      <p>
+        Both Macs need to point at the <em>same</em> folder inside a service
+        that's already syncing them — iCloud Drive, Dropbox, or similar.
+        Coplify doesn't move the files itself; it waits for that service to
+        deliver them, so an item appears once the folder has finished syncing.
+        Images stay on the Mac that copied them and are never sent.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Removing Coplify</h2>
+    <p>
+      Drag Coplify out of your Applications folder. Its history, favorites and
+      settings live in its own sandbox container inside
+      <span class="path">~/Library/Containers/</span> — delete the Coplify
+      folder there and nothing is left behind. If you'd set up sync, the files
+      it wrote to your shared folder are yours to delete too.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <span>Coplify for macOS · © 2026</span>
+  <span><a href="privacy.html">Privacy Policy</a></span>
+</footer>
+</body>
+</html>

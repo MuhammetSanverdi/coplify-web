@@ -82,6 +82,7 @@
     padding: 32px 20px 56px;
     border-top: 1px solid var(--border);
     color: var(--text-faint); font-size: 0.86rem;
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   }
 </style>
 </head>
@@ -91,6 +92,7 @@
   <div class="nav-crumbs"><a class="brand" href="./">Coplify</a></div>
   <div class="nav-links">
     <a href="./">Home</a>
+    <a href="support.html">Support</a>
     <a href="privacy.html" aria-current="page">Privacy</a>
   </div>
 </nav>
@@ -111,9 +113,9 @@
     <p>
       Coplify keeps a history of what you copy — text, rich text, images, and
       file references — so you can search and paste it again later. This
-      history, along with your favorites and preferences, is saved locally at
-      <span class="path">~/Library/Application Support/Coplify/</span> on
-      your Mac.
+      history, along with your favorites and preferences, is saved locally on
+      your Mac, inside Coplify's own sandbox container in
+      <span class="path">~/Library/Containers/</span>.
     </p>
     <p>
       Clipboard entries that the source app marks as concealed or transient
@@ -173,9 +175,9 @@
       new installs start at one month. Favorites are never trimmed. Nothing
       else deletes anything on its own; on "forever", nothing is removed at
       all. You can also clear the history yourself at any time, keeping
-      favorites or not. Uninstalling Coplify and
-      deleting <span class="path">~/Library/Application Support/Coplify/</span>
-      removes all locally stored data.
+      favorites or not. Uninstalling Coplify and deleting its folder in
+      <span class="path">~/Library/Containers/</span> removes all locally
+      stored data.
     </p>
   </section>
 
@@ -189,7 +191,8 @@
 </main>
 
 <footer>
-  Coplify for macOS · © 2026
+  <span>Coplify for macOS · © 2026</span>
+  <span><a href="support.html">Support</a></span>
 </footer>
 </body>
 </html>
