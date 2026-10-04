@@ -212,10 +212,15 @@
       <div class="card">
         <div class="perm-name">Screenshot folder</div>
         <p>
-          Optional. Point Coplify at the folder macOS saves screenshots to and
-          new captures join your history the moment they're taken — even the
-          ones you never copied. Only that folder is read, and only to look
-          for new screenshots.
+          Optional, and only needed if you save screenshots as files. Point
+          Coplify at the folder macOS saves them to and new captures join your
+          history the moment they're taken. Only that folder is read, and only
+          to look for new screenshots.
+        </p>
+        <p style="margin-top:10px">
+          Press <kbd>⌃</kbd><kbd>⌘</kbd><kbd>⇧</kbd><kbd>4</kbd> instead and the
+          screenshot goes to your clipboard rather than a file — Coplify keeps
+          it with no folder and no permission at all.
         </p>
       </div>
     </div>
@@ -236,20 +241,35 @@
     <div class="qa">
       <h3>Items copy, but don't paste automatically</h3>
       <p>
-        That's the Accessibility permission. Go to System Settings → Privacy &
-        Security → Accessibility and switch Coplify on. If it's already on,
-        switch it off and back on — macOS occasionally holds on to a stale
-        entry after an app updates.
+        Coplify needs your permission to press <kbd>⌘</kbd><kbd>V</kbd> for
+        you, and macOS only offers that permission in its own dialog — the one
+        that appears the first time you paste from the history. Allow it there
+        and pasting starts working immediately, with no restart.
+      </p>
+      <p>
+        If you dismissed that dialog, quit Coplify and open it again, then
+        paste once more. Switching the Coplify entry on and off under System
+        Settings → Privacy &amp; Security → Accessibility is a different
+        permission and will not help on its own.
       </p>
     </div>
 
     <div class="qa">
       <h3>Screenshots aren't showing up</h3>
       <p>
-        Coplify can only watch a folder you've handed it yourself. Open
-        Settings and choose the folder macOS saves your screenshots to —
-        that's the Desktop unless you've changed it. If you moved that folder
-        afterwards, choose it again.
+        Two things to check. Screenshot capture is off until you switch it on
+        in Settings — it stays off by default so a fresh install never opens
+        with a permission panel.
+      </p>
+      <p>
+        If it is on, the folder is probably the wrong one. Coplify can only
+        watch a folder you hand it, and it cannot see where macOS actually
+        saves your screenshots, so the chooser always starts at the Desktop.
+        If you have moved yours, pick the real location — press
+        <kbd>⌘</kbd><kbd>⇧</kbd><kbd>5</kbd> and open Options to see where that
+        is. Or sidestep it entirely with
+        <kbd>⌃</kbd><kbd>⌘</kbd><kbd>⇧</kbd><kbd>4</kbd>, which copies the
+        screenshot instead of saving it.
       </p>
     </div>
 
@@ -266,11 +286,12 @@
     <div class="qa">
       <h3>Sync isn't picking up my other Mac</h3>
       <p>
-        Both Macs need to point at the <em>same</em> folder inside a service
-        that's already syncing them — iCloud Drive, Dropbox, or similar.
-        Coplify doesn't move the files itself; it waits for that service to
-        deliver them, so an item appears once the folder has finished syncing.
-        Images stay on the Mac that copied them and are never sent.
+        Both Macs need to be signed into the same iCloud account with iCloud
+        Drive switched on, and sync turned on in Coplify's settings on each of
+        them — there is nothing else to match up. Coplify doesn't move anything
+        itself; it waits for iCloud, so an item appears once it has come across.
+        Favourites and files stay on the Mac they were copied on. Images travel
+        unless you switch that off.
       </p>
     </div>
   </section>
@@ -281,8 +302,9 @@
       Drag Coplify out of your Applications folder. Its history, favorites and
       settings live in its own sandbox container inside
       <span class="path">~/Library/Containers/</span> — delete the Coplify
-      folder there and nothing is left behind. If you'd set up sync, the files
-      it wrote to your shared folder are yours to delete too.
+      folder there and nothing is left behind. Anything sync put in iCloud lives in
+      Coplify's own container and goes with the app — you can also remove it
+      from System Settings → Apple Account → iCloud → Manage.
     </p>
   </section>
 </main>
