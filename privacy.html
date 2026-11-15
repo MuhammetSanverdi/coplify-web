@@ -99,7 +99,7 @@
 
 <main>
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated September 29, 2026</p>
+  <p class="updated">Last updated November 15, 2026</p>
 
   <p class="summary">
     <strong>In short:</strong> Coplify doesn't collect, transmit, or sell any
@@ -140,7 +140,9 @@
       If you grant it, Coplify watches the folder macOS saves screenshots to,
       so new screenshots appear in your history automatically. This access is
       read-only, stays entirely on-device, and is never transmitted anywhere.
-      You can revoke it at any time in System Settings → Privacy & Security.
+      Only the folder you pick is read, and only for new screenshots. You can
+      point Coplify at a different folder, or switch screenshot capture off
+      altogether, in its Settings at any time.
     </p>
   </section>
 
@@ -159,12 +161,20 @@
   </section>
 
   <section>
-    <h2>Accessibility permission</h2>
+    <h2>Permissions</h2>
     <p>
-      Coplify may request the Accessibility permission to simulate ⌘V so a
-      selected item pastes automatically. This permission is used only for
-      that purpose and involves no data collection. Without it, items still
-      copy to your system clipboard — you press ⌘V yourself instead.
+      Coplify requests no permission of any kind. It does not use the
+      Accessibility APIs, does not synthesize keystrokes, and does not read
+      anything from other applications. It will not appear under System
+      Settings → Privacy &amp; Security, because nothing in it asks to be
+      there.
+    </p>
+    <p>
+      Putting an item into another app is done by that app, through macOS's
+      own Services mechanism: you press ⌃⌥V, pick an item, and Coplify writes
+      it to the pasteboard macOS hands it for that one request. Dragging a row
+      out of the panel works the same way — the destination asks for the
+      content and performs the insertion itself.
     </p>
   </section>
 

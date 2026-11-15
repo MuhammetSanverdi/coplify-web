@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coplify — Clipboard history for your menu bar</title>
-<meta name="description" content="Coplify keeps a searchable history of everything you copy on macOS. Text, images, files, and screenshots — one shortcut away.">
+<meta name="description" content="Coplify keeps a searchable history of everything you copy on macOS — text, images, files and screenshots. One shortcut to find it, one to insert it, and no permission to grant.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
@@ -513,8 +513,8 @@
       <h1 class="headline">Everything you copy,<span class="accent">one shortcut away.</span></h1>
       <p class="hero-lede">
         Coplify keeps a searchable history of your clipboard — text, rich
-        text, images and files — and gets out of the way otherwise. No Dock
-        icon, no windows left open.
+        text, images and files — and puts any of it back where you are typing.
+        No permission to grant, no Dock icon, no windows left open.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://apps.apple.com/app/id6814287780">Get Coplify</a>
@@ -571,7 +571,8 @@
         <div class="hero-panel-footer">
           <span>3 items</span>
           <span class="spacer"></span>
-          <span class="hero-keyhint"><b>↵</b> Paste</span>
+          <span class="hero-keyhint"><b>↵</b> Copy</span>
+          <span class="hero-keyhint"><b>⌃⌥V</b> Insert</span>
           <span class="hero-keyhint"><b>esc</b> Close</span>
           <svg class="gear"><use href="#i-gear"/></svg>
         </div>
@@ -605,6 +606,16 @@
       <h2>Everything you need. Nothing you don't.</h2>
     </div>
     <div class="card-grid">
+      <div class="card">
+        <div class="card-icon"><svg class="icon" width="19" height="19"><use href="#i-text"/></svg></div>
+        <h3>Insert where you type</h3>
+        <p>Press <b>⌃⌥V</b> wherever your cursor already is. Coplify opens right there and the app you are working in inserts what you pick — nothing to allow, nothing to set up.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg class="icon" width="19" height="19"><use href="#i-arrow-right"/></svg></div>
+        <h3>Or drag it out</h3>
+        <p>Drag any row straight from the panel and drop it where you need it. That route works everywhere, browsers included.</p>
+      </div>
       <div class="card">
         <div class="card-icon"><svg class="icon" width="19" height="19"><use href="#i-search"/></svg></div>
         <h3>Search as you type</h3>
@@ -674,8 +685,8 @@
       </div>
       <div class="card">
         <div class="card-icon"><svg class="icon" width="19" height="19"><use href="#i-toggle"/></svg></div>
-        <h3>You're in control</h3>
-        <p>Accessibility and screenshot-folder access are optional — revoke either anytime in System Settings.</p>
+        <h3>Asks for nothing</h3>
+        <p>No permission of any kind — the shortcut, the history, the search and the insertion all work on first launch. Screenshot-folder access is the one optional extra, and it reads only the folder you pick.</p>
       </div>
     </div>
   </div>
@@ -690,7 +701,11 @@
     <div class="qa-list">
       <div class="qa">
         <h3>How do I bring up my clipboard history?</h3>
-        <p>Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the Coplify icon in the menu bar. Start typing to filter, then press <kbd>Return</kbd> to paste the selected item. The shortcut is yours to change in Settings if that one clashes with something.</p>
+        <p>Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the Coplify icon in the menu bar. Start typing to filter, then press <kbd>Return</kbd> to put the selected item back on your clipboard. The shortcut is yours to change in Settings if that one clashes with something.</p>
+      </div>
+      <div class="qa">
+        <h3>Can it put something straight into what I'm typing?</h3>
+        <p>Yes — press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>V</kbd> instead, where your cursor already is. Coplify opens there, and the app you are typing in inserts whatever you pick, through macOS's own Services mechanism. Nothing is granted and nothing is set up; the key itself can be changed in System Settings → Keyboard → Keyboard Shortcuts → Services. A few apps don't offer Services at all — for those, drag the row out of the panel instead, which works everywhere.</p>
       </div>
       <div class="qa">
         <h3>How long is my history kept?</h3>

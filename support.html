@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coplify — Support</title>
-<meta name="description" content="Help with Coplify for macOS: getting started, the permissions it asks for, troubleshooting, and how to get in touch.">
+<meta name="description" content="Help with Coplify for macOS: getting started, inserting what you pick, troubleshooting, and how to get in touch.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' rx='14' fill='%23146055'/%3E%3Crect x='16' y='12' width='24' height='30' rx='4.5' fill='%23fff' fill-opacity='.55'/%3E%3Crect x='11' y='18' width='24' height='30' rx='4.5' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
@@ -165,7 +165,23 @@
       <p>
         Press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>V</kbd> from any app, or click the
         Coplify icon in the menu bar. Start typing to filter, then press
-        <kbd>Return</kbd> to paste the selected item.
+        <kbd>Return</kbd> to put the selected item back on your clipboard.
+      </p>
+    </div>
+
+    <div class="qa">
+      <h3>How do I put something straight into what I'm typing?</h3>
+      <p>
+        Press <kbd>⌃</kbd><kbd>⌥</kbd><kbd>V</kbd> where your cursor already
+        is. Coplify opens there, you pick an item, and the app you are typing
+        in inserts it itself — through macOS's own Services mechanism, so
+        there is nothing to allow and nothing to switch on.
+      </p>
+      <p style="margin-top:10px">
+        The key belongs to macOS rather than to Coplify, so it is changed in
+        System Settings → Keyboard → Keyboard Shortcuts → Services. A few
+        apps do not offer Services at all; in those, drag the row straight out
+        of the panel instead — that route works everywhere, browsers included.
       </p>
     </div>
 
@@ -198,15 +214,15 @@
   </section>
 
   <section>
-    <h2>Permissions it may ask for</h2>
+    <h2>What it asks for</h2>
     <div class="cards">
       <div class="card">
-        <div class="perm-name">Accessibility</div>
+        <div class="perm-name">Nothing, to do its job</div>
         <p>
-          Lets Coplify press <kbd>⌘</kbd><kbd>V</kbd> for you, so the item you
-          pick lands straight in the app you were using. Decline it and
-          everything still works — the item goes to your clipboard and you
-          paste it yourself.
+          Coplify requests no permission of any kind. The shortcut, the
+          history, the search and the insertion all work the first time you
+          launch it, and it never appears under System Settings → Privacy
+          &amp; Security.
         </p>
       </div>
       <div class="card">
@@ -239,18 +255,19 @@
     </div>
 
     <div class="qa">
-      <h3>Items copy, but don't paste automatically</h3>
+      <h3><kbd>⌃</kbd><kbd>⌥</kbd><kbd>V</kbd> doesn't do anything</h3>
       <p>
-        Coplify needs your permission to press <kbd>⌘</kbd><kbd>V</kbd> for
-        you, and macOS only offers that permission in its own dialog — the one
-        that appears the first time you paste from the history. Allow it there
-        and pasting starts working immediately, with no restart.
+        That key is a macOS Service, and macOS only offers services from apps
+        installed in <em>/Applications</em> — which is where the Mac App Store
+        puts Coplify. It also appears only when the app you are in has an
+        editable text field focused.
       </p>
       <p>
-        If you dismissed that dialog, quit Coplify and open it again, then
-        paste once more. Switching the Coplify entry on and off under System
-        Settings → Privacy &amp; Security → Accessibility is a different
-        permission and will not help on its own.
+        Some apps do not expose Services at all, and a browser window is the
+        common case. There the shortcut simply does nothing; drag the row out
+        of the panel instead, which works everywhere. If the key clashes with
+        something else, change it in System Settings → Keyboard → Keyboard
+        Shortcuts → Services.
       </p>
     </div>
 
